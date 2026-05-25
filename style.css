@@ -125,7 +125,7 @@ body::before {
     color: #000000; 
     border: 1px solid #55cc99; /* 綠色細邊框 */
     /* 🌟 文字套用雙層魔幻紫色發光！ */
-    text-shadow: 0px 0px 6px #b800ff, 0px 0px 12px #cc66ff; 
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
 }
 
 /* 🟢 薄荷綠 Hover：變成無名小站最愛的黑色虛線邊框 */
@@ -142,7 +142,7 @@ body::before {
     color: #000000; 
     border: 1px solid #b37d22; /* 黃色細邊框 */
     /* 🌟 文字同樣套用雙層魔幻紫色發光！ */
-    text-shadow: 0px 0px 6px #b800ff, 0px 0px 12px #cc66ff;
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
 }
 
 /* 🟡 暖黃色 Hover：同樣變成黑色虛線邊框 */
