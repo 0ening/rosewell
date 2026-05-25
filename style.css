@@ -6,7 +6,7 @@
 }
 
 body {
-    /* 🌟 把原本的 Noto Sans TC 換成無名小站經典的「新細明體」 */
+    /* 🌟 換成無名小站經典的「新細明體」 */
     font-family: 'PMingLiU', '新細明體', 'MingLiU', '細明體', serif;
     
     color: #475569;
@@ -17,7 +17,7 @@ body {
     padding: 20px;
     position: relative;
     
-    /* ... 下面維持你原本的背景圖片設定 ... */
+    /* 🌟 背景圖片設定 */
     background-image: url('r.jpg'); 
     background-size: cover;
     background-position: center;
@@ -25,7 +25,7 @@ body {
     background-attachment: fixed;
 }
 
-/* 🌟 2. 核心：用虛擬元素製作一個滿版、模糊的毛玻璃遮罩 */
+/* 🌟 用虛擬元素製作一個滿版、半透明的遮罩，讓背景變清晰 */
 body::before {
     content: "";
     position: absolute;
@@ -33,15 +33,15 @@ body::before {
     left: 0;
     width: 100%;
     height: 100%;
-    /* 設定模糊度，數字越大越模糊，8px - 12px 效果最好 */
+    /* 降低模糊度讓背景超清楚 */
     backdrop-filter: blur(2px) brightness(95%); 
     -webkit-backdrop-filter: blur(2px) brightness(95%);
-    /* 疊一層淡淡的半透明白紗，維持整體亮色調 */
+    /* 淡淡的白紗 */
     background-color: rgba(244, 246, 248, 0.4); 
     z-index: 1;
 }
 
-/* 🌟 3. 確保你的主容器內容不會被模糊濾鏡影響 */
+/* 🌟 確保你的主容器內容不會被模糊濾鏡影響 */
 .container {
     width: 100%;
     max-width: 580px;
@@ -72,7 +72,7 @@ body::before {
     color: #1e293b;
     margin-bottom: 8px;
     letter-spacing: 0.5px;
-    /* 🌟 新增：淡淡的白色底稿陰影，讓字浮起來 */
+    /* 淡淡的白色底稿陰影，讓網頁名字更清晰 */
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
@@ -80,7 +80,7 @@ body::before {
     font-size: 0.95rem;
     color: #64748b;
     font-weight: 300;
-    /* 🌟 新增：淡淡的白色底稿陰影 */
+    /* 淡淡的白色底稿陰影 */
     text-shadow: 1px 1px 2px rgba(255, 255, 255, 0.8);
 }
 
@@ -99,7 +99,6 @@ body::before {
     justify-content: center;
     position: relative;
     padding: 16px 20px;
-    color: #ffffff; /* 🌟 預設白色文字，會被 specific 色類別覆蓋 */
     text-decoration: none;
     border-radius: 12px;
     font-weight: 500;
@@ -111,31 +110,35 @@ body::before {
 
 /* 按鈕內的社群圖示預設設定 */
 .link-btn .btn-icon {
-    color: inherit; /* 🌟 讓圖示自動繼承文字顏色 */
+    color: inherit; /* 讓圖示自動繼承文字顏色 */
 }
 
 /* 🟢 薄荷綠色按鈕 (用於 Dino, Frog, YouTube) */
 .btn-green {
     background-color: #99ffcc;
-    color: #000000; /* 🌟 因為薄荷綠很亮，文字與圖示要用深色才會清晰 */
+    color: #000000; 
+    /* 🌟 新增：字體背後均勻散開的厚白光發光效果 */
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
 }
 
 .btn-green:hover {
     transform: translateY(-3px);
-    background-color: #ccffe6; /* 滑鼠移過去稍微加深 */
+    background-color: #ccffe6; 
     box-shadow: 0 10px 20px rgba(0, 255, 204, 0.25);
 }
 
-/* 🟡 暖黃色按鈕 (用於賣貨便) - 更新為新版芥末黃與黑字 */
+/* 🟡 暖黃色按鈕 (用於賣貨便) */
 .btn-yellow {
-    background-color: #bfff80; /* 這是你剛剛上傳的全新芥末黃色 */
-    color: #000000; /* 🌟 這裡把文字和圖示都改成純黑色 */
+    background-color: #dda136; /* 修正為你最新上傳的質感美式黃色 */
+    color: #000000; 
+    /* 🌟 新增：黃色按鈕黑字專用的亮白發光 */
+    text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
 }
 
 .btn-yellow:hover {
     transform: translateY(-3px);
-    background-color: #d9ffb3; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
-    box-shadow: 0 10px 20px rgba(221, 161, 54, 0.25); /* 陰影也配合新黃色做微調 */
+    background-color: #c48e2b; 
+    box-shadow: 0 10px 20px rgba(221, 161, 54, 0.25); 
 }
 
 /* 滑鼠點擊時的微幅反饋 */
@@ -143,18 +146,18 @@ body::before {
     transform: translateY(-1px);
 }
 
-/* 自訂圖示的尺寸與位置設定（放大版） */
+/* 自訂圖示的尺寸與位置設定（靠最左破框完美版） */
 .btn-icon-custom {
     position: absolute;
-    left: 2px;       /* 調整位置 */
-    width: 60px;       /* 維持你設定的 60px 大小 */
-    height: 60px;      /* 維持你設定的 60px 大小 */
+    left: 2px;       /* 靠最左邊 */
+    width: 60px;       
+    height: 60px;      
     object-fit: contain;
 }
 
 /* 按鈕文字對齊與微調 */
 .link-btn .btn-text {
-    padding-left: 10px; /* 配合變大的圖示稍微往右邊縮一點 */
+    padding-left: 10px; 
 }
 
 /* 頁尾 */
