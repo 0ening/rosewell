@@ -143,4 +143,12 @@ body::before {
     color: #94a3b8;
     letter-spacing: 1px;
 }
+/* 自訂圖示的尺寸與外觀設定 */
+.btn-icon-custom {
+    position: absolute;
+    left: 24px;
+    width: 28px;  /* 控制圖片大小 */
+    height: 28px;
+    object-fit: contain;
+}
 
