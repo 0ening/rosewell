@@ -110,25 +110,25 @@ body::before {
 
 /* 🟢 薄荷綠色按鈕 (用於 Dino, Frog, YouTube) */
 .btn-green {
-    background-color: #66CDAA;
-    color: #1e293b; /* 🌟 因為薄荷綠很亮，文字與圖示要用深色才會清晰 */
+    background-color: #68bba2;
+    color: #F0F8FF; /* 🌟 因為薄荷綠很亮，文字與圖示要用深色才會清晰 */
 }
 
 .btn-green:hover {
     transform: translateY(-3px);
-    background-color: #00cc99; /* 滑鼠移過去稍微加深 */
+    background-color: #4fb093; /* 滑鼠移過去稍微加深 */
     box-shadow: 0 10px 20px rgba(0, 255, 204, 0.25);
 }
 
 /* 🟡 暖黃色按鈕 (用於賣貨便) - 更新為新版芥末黃與黑字 */
 .btn-yellow {
-    background-color: #ffcc66; /* 這是你剛剛上傳的全新芥末黃色 */
-    color: #000000; /* 🌟 這裡把文字和圖示都改成純黑色 */
+    background-color: #CD5C5C; /* 這是你剛剛上傳的全新芥末黃色 */
+    color: #F0F8FF; /* 🌟 這裡把文字和圖示都改成純黑色 */
 }
 
 .btn-yellow:hover {
     transform: translateY(-3px);
-    background-color: #CD5C5C; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
+    background-color: #c33c3c; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
     box-shadow: 0 10px 20px rgba(221, 161, 54, 0.25); /* 陰影也配合新黃色做微調 */
 }
 
