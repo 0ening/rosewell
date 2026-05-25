@@ -93,7 +93,7 @@ body::before {
     justify-content: center;
     position: relative;
     padding: 16px 20px;
-    color: #ffffff; /* 🌟 綠色與橘色底色，搭配白色文字最清晰 */
+    color: #ffffff; /* 🌟 預設白色文字，會被 specific 色類別覆蓋 */
     text-decoration: none;
     border-radius: 12px;
     font-weight: 500;
@@ -103,57 +103,53 @@ body::before {
     border: 1px solid transparent;
 }
 
-/* 🟢 綠色系按鈕（Instagram、LINE貼圖） */
+/* 按鈕內的社群圖示預設設定 */
+.link-btn .btn-icon {
+    color: inherit; /* 🌟 讓圖示自動繼承文字顏色 */
+}
+
+/* 🟢 薄荷綠色按鈕 (用於 Dino, Frog, YouTube) */
 .btn-green {
-    background-color: #00ffcc; /* 這是你上傳的亮青綠色 */
-    color: #1e293b; /* 🌟 因為綠色很亮，文字改配深色字才會清晰好讀喔！ */
+    background-color: #00ffcc;
+    color: #1e293b; /* 🌟 因為薄荷綠很亮，文字與圖示要用深色才會清晰 */
 }
 
 .btn-green:hover {
     transform: translateY(-3px);
-    background-color: #00e6b8; /* 懸停時稍微加深 */
+    background-color: #00e6b8; /* 滑鼠移過去稍微加深 */
     box-shadow: 0 10px 20px rgba(0, 255, 204, 0.25);
 }
 
-/* 🟠 橘色系按鈕（賣貨便、YouTube） */
-.btn-orange {
-    background-color: #f37335; /* 這是你上傳的經典暖橘色 */
-    color: #ffffff; /* 搭配純白文字 */
+/* 🟡 暖黃色按鈕 (用於賣貨便) */
+.btn-yellow {
+    background-color: #d9c054;
+    color: #ffffff; /* 🌟 搭配純白文字與圖示 */
 }
 
-.btn-orange:hover {
+.btn-yellow:hover {
     transform: translateY(-3px);
-    background-color: #e06124; /* 懸停時稍微加深 */
-    box-shadow: 0 10px 20px rgba(243, 115, 53, 0.25);
-}
-/* 🔵 藍色系按鈕（YouTube 作業專用） */
-.btn-blue {
-    background-color: #68829e; /* 之前設定的高質感霧藍色 */
-    color: #ffffff; /* 搭配白色文字 */
+    background-color: #c9af43; /* 滑鼠移過去稍微加深 */
+    box-shadow: 0 10px 20px rgba(217, 192, 84, 0.25);
 }
 
-.btn-blue:hover {
-    transform: translateY(-3px);
-    background-color: #556f8a; /* 懸停時稍微加深 */
-    box-shadow: 0 10px 20px rgba(104, 130, 158, 0.25);
-}
+
 /* 滑鼠點擊時的微幅反饋 */
 .link-btn:active {
     transform: translateY(-1px);
 }
 
-/* 自訂插畫圖示的位置設定 */
+/* 自訂圖示的尺寸與位置設定（放大版） */
 .btn-icon-custom {
     position: absolute;
-    left: 18px;
-    width: 36px;
-    height: 36px;
+    left: 20px;       /* 調整位置 */
+    width: 60px;       /* 維持你設定的 60px 大小 */
+    height: 60px;      /* 維持你設定的 60px 大小 */
     object-fit: contain;
 }
 
 /* 按鈕文字對齊與微調 */
 .link-btn .btn-text {
-    padding-left: 16px;
+    padding-left: 26px; /* 配合變大的圖示稍微往右邊縮一點 */
 }
 
 /* 頁尾 */
@@ -161,13 +157,4 @@ body::before {
     font-size: 0.8rem;
     color: #94a3b8;
     letter-spacing: 1px;
-}
-
-/* 自訂圖示的尺寸與位置設定（放大版） */
-.btn-icon-custom {
-    position: absolute;
-    left: 36px;       /* 稍微往左邊靠一點，留給大圖空間 */
-    width: 64px;       /* 🌟 從 28px 放大到 36px */
-    height: 64px;      /* 🌟 從 28px 放大到 36px */
-    object-fit: contain;
 }
