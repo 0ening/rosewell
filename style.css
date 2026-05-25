@@ -18,7 +18,7 @@ body {
     position: relative;
     
     /* ... 下面維持你原本的背景圖片設定 ... */
-    background-image: url('bg.jpg'); 
+    background-image: url('r.jpg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -99,7 +99,7 @@ body::before {
     text-decoration: none;
     border-radius: 12px;
     font-weight: 500;
-    font-size: 1rem;
+    font-size: 0.95rem;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: 1px solid transparent;
