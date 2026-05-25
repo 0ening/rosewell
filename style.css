@@ -35,7 +35,7 @@ body::before {
     backdrop-filter: blur(2px) brightness(95%); 
     -webkit-backdrop-filter: blur(2px) brightness(95%);
     /* 疊一層淡淡的半透明白紗，維持整體亮色調 */
-    background-color: rgba(244, 246, 248, 0.3); 
+    background-color: rgba(244, 246, 248, 0.4); 
     z-index: 1;
 }
 
@@ -128,7 +128,7 @@ body::before {
 
 .btn-yellow:hover {
     transform: translateY(-3px);
-    background-color: #ffff4d; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
+    background-color: #ff9933; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
     box-shadow: 0 10px 20px rgba(221, 161, 54, 0.25); /* 陰影也配合新黃色做微調 */
 }
 
