@@ -122,13 +122,13 @@ body::before {
 
 /* 🟡 暖黃色按鈕 (用於賣貨便) - 更新為新版芥末黃與黑字 */
 .btn-yellow {
-    background-color: #dda136; /* 這是你剛剛上傳的全新芥末黃色 */
+    background-color: #E9967A; /* 這是你剛剛上傳的全新芥末黃色 */
     color: #000000; /* 🌟 這裡把文字和圖示都改成純黑色 */
 }
 
 .btn-yellow:hover {
     transform: translateY(-3px);
-    background-color: #c48e2b; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
+    background-color: #CD5C5C; /* 滑鼠移過去時，顏色會稍微加深變得更沉穩 */
     box-shadow: 0 10px 20px rgba(221, 161, 54, 0.25); /* 陰影也配合新黃色做微調 */
 }
 
