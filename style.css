@@ -147,7 +147,7 @@ body::before {
 /* 自訂圖示的尺寸與位置設定（放大版） */
 .btn-icon-custom {
     position: absolute;
-    left: 18px;       /* 稍微往左邊靠一點，留給大圖空間 */
+    left: 36px;       /* 稍微往左邊靠一點，留給大圖空間 */
     width: 64px;       /* 🌟 從 28px 放大到 36px */
     height: 64px;      /* 🌟 從 28px 放大到 36px */
     object-fit: contain;
