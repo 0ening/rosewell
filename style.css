@@ -99,8 +99,8 @@ body::before {
     justify-content: center;
     position: relative;
     
-    /* 🌟 修改 1：上下內距從 14px 縮小到 10px，讓按鈕變扁 */
-    padding: 5px 10px; 
+    /* 🌟 修改 1：水滴型/
+   border-radius: 70% 30% 30% 70% / 60% 40% 60% 40%;
     
     /* 🌟 修改 2：限制最大寬度，讓它不再是滿版大方塊，更像點擊一條網址 */
     width: 100%;
