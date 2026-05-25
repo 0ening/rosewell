@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有線耳機復活計畫 | 會員編號</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
+    <style>
+        body {
+            font-family: "PML", 'PMingLiU', '新細明體', serif;
+            background-image: url('r.jpg'); /* 沿用你好看的背景圖 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            backdrop-filter: blur(2px) brightness(95%);
+            -webkit-backdrop-filter: blur(2px) brightness(95%);
+            background-color: rgba(244, 246, 248, 0.4);
+            z-index: 1;
+        }
+        .counter-box {
+            position: relative;
+            z-index: 2;
+            background-color: #99ffcc; /* 沿用你最愛的薄荷綠 */
+            border: 1px solid #55cc99;
+            border-radius: 4px; /* 無名小站方塊感 */
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 80%;
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: #000000;
+            margin-bottom: 20px;
+            text-shadow: 0px 0px 8px rgba(255, 255, 255, 1);
+        }
+        .number-area {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #000000;
+            background: #ffffff;
+            border: 1px dashed #000000;
+            padding: 10px 20px;
+            display: inline-block;
+            letter-spacing: 2px;
+            /* 讓號碼也有漂亮的紫色霓虹光 🔮 */
+            text-shadow: 0px 0px 8px #cc66ff, 0px 0px 4px #b800ff;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-box">
+        <h2>🎧 有線耳機復活計畫 🎧</h2>
+        <p style="color: #1e293b; margin-bottom: 10px;">恭喜你成為復活計畫的一員！</p>
+        <p style="color: #1e293b; margin-bottom: 25px; font-size: 1.1rem;">您是第</p>
+        
+        <div class="number-area">
+            <img src="https://counter.dev/count?id=rosewell-earphone-plan" alt="counter" style="display:none;">
+            <script src="https://counter.dev/count.js" data-id="rosewell-earphone-plan" data-key="12345"></script>
+            </div>
+        
+        <p style="color: #1e293b; margin-top: 25px; font-size: 1.1rem;">位會員</p>
+    </div>
+
+</body>
+</html>
