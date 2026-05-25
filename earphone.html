@@ -52,13 +52,16 @@
             border: 1px dashed #ffffff;
             padding: 12px 24px;
             margin: 10px 0;
-            box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5); /* 淡淡的內斂紫色光暈 🔮 */
+            box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5);
         }
-        /* 讓計數器數字圖片完美居中 */
-        .counter-img {
-            display: block;
-            height: 32px; /* 控制數字圖片的大小 */
-            image-rendering: pixelated; /* 讓數字保有復古的像素感 */
+        /* 💡 自建的幸運發光文字編號 */
+        .custom-number {
+            font-size: 2.2rem;
+            font-weight: bold;
+            color: #00ffcc; /* 薄荷綠電子數字顏色 */
+            letter-spacing: 3px;
+            font-family: monospace, serif; /* 強制讓數字等寬，更有電子感 */
+            text-shadow: 0px 0px 8px #00ffcc, 0px 0px 3px #ffffff;
         }
     </style>
 </head>
@@ -67,16 +70,27 @@
     <div class="counter-box">
         <h2>🎧 有線耳機復活計畫 🎧</h2>
         <p style="color: #1e293b; margin-bottom: 10px;">恭喜你成為復活計畫的一員！</p>
-        <p style="color: #1e293b; margin-bottom: 20px; font-size: 1.1rem;">您是第</p>
+        <p style="color: #1e293b; margin-bottom: 20px; font-size: 1.1rem;">您的專屬會員編號為</p>
         
         <div class="number-area">
-            <img class="counter-img" src="https://moe-counter.glitch.me/get/@rosewell-earphone?theme=asoul" alt="Counter">
+            <span id="member-id" class="custom-number">NO.00000</span>
         </div>
         
-        <p style="color: #1e293b; margin-top: 20px; font-size: 1.1rem;">位會員</p>
+        <p style="color: #64748b; margin-top: 20px; font-size: 0.85rem;">★ 專屬計畫編號，請截圖保存 ★</p>
     </div>
+
+    <script>
+        function generateMemberID() {
+            // 利用當前時間的毫秒數當作種子，計算出一個 120 到 999 之間的隨機流水號
+            const now = new Date();
+            const seed = now.getTime() % 880 + 120; 
+            
+            // 格式化成 NO.00XXX 的帥氣樣式
+            document.getElementById('member-id').innerText = 'NO.00' + seed;
+        }
+        // 網頁一打開立刻執行
+        generateMemberID();
+    </script>
 
 </body>
 </html>
-</body>
-</html
