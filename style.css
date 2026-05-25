@@ -139,8 +139,8 @@ body::before {
     /* 🌟 新增：讓按鈕背後散發淡淡的薄荷綠光暈 */
     box-shadow: 0px 0px 15px rgba(85, 204, 153, 0.6);
     /* 保持你原本設定的文字白光 */
-    text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
-}
+   /* 🟢 修改為：純粹的霓虹亮綠色 */
+    text-shadow: 0px 0px 5px #00ff00, 0px 0px 12px #00cc00;
 
 /* 🟢 薄荷綠 Hover：滑鼠移過去時光暈變亮 */
 .btn-green:hover {
@@ -148,7 +148,8 @@ body::before {
     background-color: #ccffe6; 
     border: 1px dashed #000000; 
     /* 🌟 滑鼠移過去時，綠光稍微放大變亮，並保留無名小站的復古硬陰影 */
-    box-shadow: 0px 0px 20px rgba(85, 204, 153, 0.9), 2px 2px 0px rgba(0, 0, 0, 0.15); 
+    /* 🟢 修改為：純粹的霓虹亮綠色 */
+    text-shadow: 0px 0px 5px #00ff00, 0px 0px 12px #00cc00; 
 }
 
 /* 🟡 暖黃色按鈕 (用於賣貨便) */
