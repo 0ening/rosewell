@@ -44,19 +44,21 @@
             font-size: 1.3rem;
             color: #000000;
             margin-bottom: 20px;
-            text-shadow: 0px 0px 8px rgba(255, 255, 255, 1);
         }
+        /* 號碼外框樣式 */
         .number-area {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #000000;
-            background: #ffffff;
-            border: 1px dashed #000000;
-            padding: 10px 20px;
             display: inline-block;
-            letter-spacing: 2px;
-            /* 讓號碼也有漂亮的紫色霓虹光 🔮 */
-            text-shadow: 0px 0px 8px #cc66ff, 0px 0px 4px #b800ff;
+            background: #000000; /* 黑底框，搭配發光數字超級帥 */
+            border: 1px dashed #ffffff;
+            padding: 12px 24px;
+            margin: 10px 0;
+            box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5); /* 淡淡的內斂紫色光暈 🔮 */
+        }
+        /* 讓計數器數字圖片完美居中 */
+        .counter-img {
+            display: block;
+            height: 32px; /* 控制數字圖片的大小 */
+            image-rendering: pixelated; /* 讓數字保有復古的像素感 */
         }
     </style>
 </head>
@@ -65,15 +67,14 @@
     <div class="counter-box">
         <h2>🎧 有線耳機復活計畫 🎧</h2>
         <p style="color: #1e293b; margin-bottom: 10px;">恭喜你成為復活計畫的一員！</p>
-        <p style="color: #1e293b; margin-bottom: 25px; font-size: 1.1rem;">您是第</p>
+        <p style="color: #1e293b; margin-bottom: 20px; font-size: 1.1rem;">您是第</p>
         
         <div class="number-area">
-            <img src="https://counter.dev/count?id=rosewell-earphone-plan" alt="counter" style="display:none;">
-            <script src="https://counter.dev/count.js" data-id="rosewell-earphone-plan" data-key="12345"></script>
-            </div>
+            <img class="counter-img" src="https://moe-counter.glitch.me/get/@rosewell-earphone?theme=asoul" alt="Counter">
+        </div>
         
-        <p style="color: #1e293b; margin-top: 25px; font-size: 1.1rem;">位會員</p>
+        <p style="color: #1e293b; margin-top: 20px; font-size: 1.1rem;">位會員</p>
     </div>
 
 </body>
-</html>
+</html
