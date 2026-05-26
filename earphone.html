@@ -35,13 +35,7 @@
         .nav-links a { color: #0077ff; text-decoration: underline; margin-right: 15px; cursor: pointer; }
         .nav-links a:hover { color: #00bfff; }
 
-        .club-marquee { position: absolute; top: 70px; width: 100%; background: #000000; color: #ccffcc; padding: 5px 0; border: 1px dashed #ccffcc; z-index: 5; font-size: 0.95rem; letter-spacing: 2px; }
-        
-        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.65); border: 2px dashed #990099; box-shadow: 8px 8px 0px #ccffcc; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; margin-top: 60px; }
-        
-        .decor-icon { position: absolute; color: #990099; font-size: 1.2rem; }
-        .decor-tl { top: 10px; left: 15px; }
-        .decor-br { bottom: 10px; right: 15px; }
+        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.65); border: 2px dashed #990099; box-shadow: 8px 8px 0px #ccffcc; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; }
         
         h2, .info-text { background-color: #ccffcc; border: 1px solid #99ff99; display: inline-block; padding: 6px 15px; margin-bottom: 5px; font-weight: bold; }
         
@@ -67,13 +61,7 @@
         </div>
     </div>
 
-    <div class="club-marquee">
-        <marquee scrollamount="4">♫ 歡迎來到類比時代的最後淨土 ♫ 插入有線耳機，隔絕數位世界的喧囂 ♫ 祝您有玫好的一天 ♫</marquee>
-    </div>
-
     <div class="counter-box">
-        <div class="decor-icon decor-tl">🎧</div>
-        <div class="decor-icon decor-br">★</div>
         <h2>歡迎加入</h2><h2>有線耳機復活俱樂部</h2>
         <p class="info-text">您是第</p>
         <div class="number-area"><span id="member-id" class="custom-number">------</span></div>
@@ -84,44 +72,44 @@
         </div>
     </div>
 
-    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">✦ 會員規則 ✦</div><ul class="rules-list"><li>需每天帶有線耳機出門。</li><li>擁有【有線耳機復活計畫】小卡。</li><li>尊重音樂。</li></ul></div></div>
+    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">✦ 會員規則 ✦</div><ul class="rules-list"><li>需每天帶有線耳機出門。</li><li>擁有【有線耳機復活計畫】小卡。</li></ul></div></div>
     <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="input-title">✦ 建立會員卡 ✦</div><input type="text" id="user-name-input" class="name-input" placeholder="輸入暱稱" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定產生</button></div></div>
 
-    <canvas id="download-canvas" width="600" height="400" style="display:none;"></canvas>
-
     <script>
-        // 抓取元素
         const rulesModal = document.getElementById('rules-modal');
         const nameModal = document.getElementById('name-modal');
         const numberElement = document.getElementById('member-id');
         const downloadBtn = document.getElementById('download-trigger-btn');
         
-        // 綁定事件
         document.getElementById('open-rules-btn').onclick = (e) => { e.preventDefault(); rulesModal.style.display = 'flex'; };
         document.getElementById('close-rules-btn').onclick = () => rulesModal.style.display = 'none';
         document.getElementById('close-name-btn').onclick = () => nameModal.style.display = 'none';
         downloadBtn.onclick = () => nameModal.style.display = 'flex';
 
-        // 核心邏輯
-        let finalNumber = 0;
-        const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
-
-        // 動畫
-        function animate() {
-            if(finalNumber === 0) {
+        // 簡單且穩定的計數動畫
+        function startCounter() {
+            const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
+            
+            // 先讓它隨機跑
+            let counter = 0;
+            const interval = setInterval(() => {
                 numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
-                requestAnimationFrame(animate);
-            } else {
-                numberElement.innerText = String(finalNumber).padStart(6, '0');
-            }
-        }
-        animate();
+            }, 100);
 
-        // 獲取數據
-        fetch(gasUrl).then(r => r.json()).then(d => {
-            finalNumber = d.value;
-            downloadBtn.disabled = false;
-        }).catch(() => { finalNumber = 100001; downloadBtn.disabled = false; });
+            fetch(gasUrl)
+                .then(r => r.json())
+                .then(d => {
+                    clearInterval(interval);
+                    numberElement.innerText = String(d.value).padStart(6, '0');
+                    downloadBtn.disabled = false;
+                })
+                .catch(() => {
+                    clearInterval(interval);
+                    numberElement.innerText = "100001";
+                    downloadBtn.disabled = false;
+                });
+        }
+        startCounter();
     </script>
 </body>
 </html>
