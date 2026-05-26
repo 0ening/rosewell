@@ -45,11 +45,8 @@ body::before {
 
 /* 跑馬燈小方塊 */
 .top-marquee {
-    background-color: #ccffcc; /* 淺螢光綠 */
-    border: 1px solid #99ff99; /* 復古細邊框 */
-    padding: 6px 20px;
     text-align: center;
-    color: #000000;
+    color: #b3b3cc;
     font-weight: bold;
     font-size: 1.1rem;
     letter-spacing: 2px;
@@ -69,7 +66,7 @@ body::before {
 }
 
 /* 導覽列與歡迎詞的小方塊 */
-.nav-links, .welcome-text {
+.nav-links{
     background-color: #ccffcc; /* 淺螢光綠 */
     border: 1px solid #99ff99;
     padding: 6px 15px;
