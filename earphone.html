@@ -4,10 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>有線耳機復活計畫 | 會員編號</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
     <style>
         body {
-            /* 蘋果與微軟雙管齊下的復古字體配方 */
+            /* 蘋果與微軟雙管棄下的復古字體配方 */
             font-family: "PML", 'Songti TC', 'PMingLiU', '新細明體', 'Kaiti TC', serif;
             background-image: url('r.jpg');
             background-size: cover;
@@ -19,6 +20,7 @@
             justify-content: center;
             align-items: center;
             margin: 0;
+            position: relative;
         }
         body::before {
             content: "";
@@ -35,16 +37,15 @@
             background-color: #99ffcc;
             border: 1px solid #55cc99;
             border-radius: 4px;
-            padding: 40px 30px;
+            padding: 35px 25px;
             text-align: center;
             box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
             max-width: 400px;
-            width: 80%;
+            width: 85%;
         }
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.25rem;
             color: #000000;
-            /* 標題上下空間歸零 */
             margin: 0; 
             line-height: 1.2;
         }
@@ -52,15 +53,15 @@
             display: inline-block;
             background: #000000;
             border: 1px dashed #ffffff;
-            padding: 12px 24px;
-            margin: 10px 0;
+            padding: 10px 20px;
+            margin: 12px 0;
             box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5);
         }
         .custom-number {
-            font-size: 2.5rem;
+            font-size: 2.3rem;
             font-weight: bold;
             color: #00ffcc;
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             font-family: monospace, serif;
             text-shadow: 0px 0px 8px #00ffcc, 0px 0px 3px #ffffff;
         }
@@ -68,8 +69,8 @@
         /* 規則連結樣式 */
         .rules-link {
             display: inline-block;
-            margin-top: 15px;
-            font-size: 0.85rem;
+            margin-top: 10px;
+            font-size: 0.8rem;
             color: #cc66ff;
             text-decoration: none;
             border-bottom: 1px dashed #cc66ff;
@@ -81,22 +82,62 @@
             text-shadow: 0px 0px 5px rgba(204, 102, 255, 0.5);
         }
 
-        /* 彈出視窗遮罩 */
+        /* 🌟 下載按鈕區域與樣式 */
+        .action-area {
+            margin-top: 25px;
+            border-top: 1px dashed #55cc99;
+            padding-top: 15px;
+        }
+        .download-btn {
+            background: linear-gradient(135deg, #ff99cc, #cc66ff); /* Y2K 漸層粉紫 */
+            color: white;
+            border: 2px solid #ffffff;
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            border-radius: 50px; /* 藥丸形狀按鈕 */
+            cursor: pointer;
+            box-shadow: 2px 2px 0px rgba(0,0,0,0.2);
+            transition: all 0.2s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-family: inherit; /* 繼承復古字體 */
+        }
+        .download-btn:hover {
+            background: linear-gradient(135deg, #ffb3d9, #d98cff);
+            transform: scale(1.05);
+            box-shadow: 3px 3px 0px rgba(0,0,0,0.25);
+        }
+        .download-btn:active {
+            transform: scale(0.98) translateY(1px);
+        }
+        /* 當還沒載入號碼時禁用按鈕 */
+        .download-btn:disabled {
+            background: #94a3b8;
+            border-color: #cbd5e1;
+            cursor: not-allowed;
+            opacity: 0.6;
+            transform: none;
+            box-shadow: none;
+        }
+
+        /* 彈出視窗樣式 (共用) */
         .modal-overlay {
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(0, 0, 0, 0.6);
+            background-color: rgba(0, 0, 0, 0.7);
             z-index: 100;
             justify-content: center;
             align-items: center;
         }
 
-        /* 彈出視窗本體 */
+        /* 彈出視窗本體 (規則與名字輸入共用) */
         .modal-content {
             background-color: #ADFEDC; 
             border: 2px solid #000000;
-            box-shadow: 4px 4px 0px rgb(153, 50, 204);
+            box-shadow: 4px 4px 0px rgb(0, 204, 255);
             width: 85%;
             max-width: 350px;
             padding: 25px 20px;
@@ -117,12 +158,9 @@
             cursor: pointer;
             padding: 2px 6px;
         }
-        .close-btn:hover {
-            background: #ff9999;
-        }
 
         /* 視窗文字排版 */
-        .rules-title {
+        .rules-title, .input-title {
             font-size: 1.05rem;
             font-weight: bold;
             color: #00BB00;
@@ -138,6 +176,44 @@
             line-height: 1.6;
         }
         .rules-list li { margin-bottom: 8px; }
+
+        /* 🌟 名字輸入框樣式 */
+        .name-input {
+            width: 100%;
+            padding: 10px;
+            font-family: monospace, serif;
+            font-size: 1rem;
+            border: 2px solid #000;
+            background: #fff;
+            margin-bottom: 15px;
+            box-shadow: inset 2px 2px 0px rgba(0,0,0,0.1);
+        }
+        .name-input:focus {
+            outline: none;
+            border-color: #cc66ff;
+            background: #fffbfe;
+        }
+        .submit-btn {
+            width: 100%;
+            background: #000;
+            color: #00ffcc;
+            border: 2px solid #000;
+            padding: 10px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            font-family: monospace, serif;
+            transition: all 0.1s ease;
+        }
+        .submit-btn:hover {
+            background: #333;
+            color: #fff;
+        }
+
+        /* 隱藏的 Canvas，用於產生圖片 */
+        #download-canvas {
+            display: none;
+        }
     </style>
 </head>
 <body>
@@ -146,17 +222,24 @@
         <h2>✮ 有線耳機復活計畫 ♫</h2>
         
         <p style="color: #339966; margin-top: 4px; margin-bottom: 0px; font-size: 0.95rem;">恭喜你成為有線耳機復活計畫的一員！</p>
-        <p style="color: #339966; margin-top: 2px; margin-bottom: 15px; font-size: 0.9rem;">♪ 好時光都該被寶貝因為有線~ ♪</p>
+        <p style="color: #339966; margin-top: 2px; margin-bottom: 12px; font-size: 0.9rem;">♪ 好時光都該被寶貝因為有線~ ♪</p>
         
-        <p style="color: #1e293b; margin-bottom: 10px; font-size: 1.1rem;">您是第</p>
+        <p style="color: #1e293b; margin-bottom: 8px; font-size: 1rem;">您是第</p>
         
         <div class="number-area">
-            <span id="member-id" class="custom-number">000000</span>
+            <span id="member-id" class="custom-number">------</span>
         </div>
         
-        <p style="color: #1e293b; margin-top: 10px; font-size: 1.1rem;">位加入的會員</p>
+        <p style="color: #1e293b; margin-top: 8px; font-size: 1rem;">位加入的會員</p>
         
         <a href="#" id="open-rules-btn" class="rules-link">✞ 點我查看會員規則 ✞</a>
+
+        <div class="action-area">
+            <button id="download-trigger-btn" class="download-btn" disabled>
+                <i class="fas fa-file-download"></i>
+                下載專屬會員卡
+            </button>
+        </div>
     </div>
 
     <div id="rules-modal" class="modal-overlay">
@@ -172,35 +255,60 @@
         </div>
     </div>
 
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-name-btn" class="close-btn">X</button>
+            <div class="input-title">✦ 建立會員卡 ✦</div>
+            <p style="color: #00BB00; font-size: 0.85rem; margin-bottom: 10px; text-align: center;">請輸入您的名字 (將印在卡片上)</p>
+            <input type="text" id="user-name-input" class="name-input" placeholder="例如: 小明 / Ming" maxlength="10">
+            <button id="confirm-download-btn" class="submit-btn">產生並下載 [卡片]</button>
+        </div>
+    </div>
+
+    <canvas id="download-canvas" width="600" height="400"></canvas>
+
     <script>
-        // ======= 彈出視窗控制邏輯 =======
-        const modal = document.getElementById('rules-modal');
-        const openBtn = document.getElementById('open-rules-btn');
-        const closeBtn = document.getElementById('close-rules-btn');
+        // ======= 彈出視窗控制邏輯 (共用) =======
+        const rulesModal = document.getElementById('rules-modal');
+        const openRulesBtn = document.getElementById('open-rules-btn');
+        const closeRulesBtn = document.getElementById('close-rules-btn');
 
-        openBtn.addEventListener('click', function(event) {
+        const nameModal = document.getElementById('name-modal');
+        const downloadTriggerBtn = document.getElementById('download-trigger-btn');
+        const closeNameBtn = document.getElementById('close-name-btn');
+        const userNameInput = document.getElementById('user-name-input');
+        const confirmDownloadBtn = document.getElementById('confirm-download-btn');
+
+        // 規則視窗
+        openRulesBtn.addEventListener('click', function(event) {
             event.preventDefault(); 
-            modal.style.display = 'flex';
+            rulesModal.style.display = 'flex';
         });
+        closeRulesBtn.addEventListener('click', () => rulesModal.style.display = 'none');
 
-        closeBtn.addEventListener('click', function() {
-            modal.style.display = 'none';
+        // 🌟 下載流程視窗
+        downloadTriggerBtn.addEventListener('click', function() {
+            // 清空上次輸入並聚焦
+            userNameInput.value = '';
+            nameModal.style.display = 'flex';
+            setTimeout(() => userNameInput.focus(), 100);
         });
+        closeNameBtn.addEventListener('click', () => nameModal.style.display = 'none');
 
+        // 點擊遮罩關閉
         window.addEventListener('click', function(event) {
-            if (event.target === modal) {
-                modal.style.display = 'none';
-            }
+            if (event.target === rulesModal) rulesModal.style.display = 'none';
+            if (event.target === nameModal) nameModal.style.display = 'none';
         });
 
         // ======= 計數器與後台連線邏輯 =======
         const numberElement = document.getElementById('member-id');
-        let finalNumber = 1; 
+        let finalNumber = 0; // 預設 0
         let isLoaded = false;
         const duration = 1500; 
         let startTime = null;
 
-        // 綁定你的 Google GAS 網址
+        // 你的 Google GAS 網址 (已保留)
         const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
 
         if(gasUrl.indexOf('http') === 0) {
@@ -209,13 +317,18 @@
                 .then(data => {
                     finalNumber = data.value;
                     isLoaded = true;
+                    // 🌟 號碼載入完成後，啟用下載按鈕
+                    downloadTriggerBtn.disabled = false;
                 })
                 .catch(err => {
-                    finalNumber = 1;
+                    finalNumber = 1; // 發生錯誤時預設為 1
                     isLoaded = true;
+                    downloadTriggerBtn.disabled = false;
                 });
         } else {
+            // 如果沒有網址，視為載入完成(預設0)，啟用按鈕
             isLoaded = true;
+            downloadTriggerBtn.disabled = false;
         }
 
         function updateCounter(currentTime) {
@@ -231,6 +344,115 @@
             }
         }
         requestAnimationFrame(updateCounter);
+
+        // ======= 🌟 核心：Canvas 繪圖與下載邏輯 =======
+        confirmDownloadBtn.addEventListener('click', generateAndDownloadCard);
+
+        function generateAndDownloadCard() {
+            const name = userNameInput.value.trim() || '神秘會員'; // 如果沒輸入名字的預設值
+            const formattedNumber = String(finalNumber).padStart(6, '0');
+            const canvas = document.getElementById('download-canvas');
+            const ctx = canvas.getContext('2d');
+
+            // 1. 繪製背景 (Y2K 漸層風格)
+            // 建立一個從左上到右下的漸層
+            const gradient = ctx.createLinearGradient(0, 0, 600, 400);
+            gradient.addColorStop(0, '#99ffcc'); // 薄荷綠
+            gradient.addColorStop(1, '#cc66ff'); // 紫色
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 600, 400);
+
+            // 繪製內層裝飾框 (dashed效果用實線代替， Canvas做dashed比較麻煩且相容性差，改用復古雙框)
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 4;
+            ctx.strokeRect(20, 20, 560, 360);
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1;
+            ctx.strokeRect(25, 25, 550, 350);
+
+            // 2. 設定通用文字樣式
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // 定義字體配方 (Canvas 需要明確的字體字串)
+            const fontHeadline = 'bold 28px "PML", "PMingLiU", "新細明體", serif';
+            const fontBody = '20px "PML", "PMingLiU", "新細明體", serif';
+            const fontNumber = 'bold 50px monospace'; // 號碼用電子感字體
+
+            // 3. 繪製標題
+            ctx.font = fontHeadline;
+            ctx.fillStyle = '#000000';
+            // 加一點點紫色陰影
+            ctx.shadowColor = 'rgba(204, 102, 255, 0.8)';
+            ctx.shadowBlur = 10;
+            ctx.fillText('✮ 有線耳機復活計畫 MEMBER ♫', 300, 60);
+            ctx.shadowBlur = 0; // 重設陰影
+
+            // 繪製分隔線
+            ctx.beginPath();
+            ctx.moveTo(100, 90);
+            ctx.lineTo(500, 90);
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+
+            // 4. 繪製名字
+            ctx.font = 'bold 24px "PML", "PMingLiU", serif';
+            ctx.fillStyle = '#ffffff';
+            // 為名字加黑色外框字效果，使其清晰
+            ctx.strokeStyle = '#000000';
+            ctx.lineWidth = 3;
+            ctx.strokeText(`會員：${name}`, 300, 130);
+            ctx.fillText(`會員：${name}`, 300, 130);
+
+            // 5. 繪製會員編號區域 (模擬網頁上的黑框)
+            ctx.fillStyle = '#000000';
+            ctx.fillRect(150, 160, 300, 80);
+            ctx.strokeStyle = '#ffffff';
+            ctx.lineWidth = 2;
+            ctx.setLineDash([5, 5]); // 虛線框
+            ctx.strokeRect(160, 170, 280, 60);
+            ctx.setLineDash([]); // 恢復實線
+
+            // 繪製號碼
+            ctx.font = fontNumber;
+            ctx.fillStyle = '#00ffcc'; // 電子綠
+            ctx.shadowColor = '#00ffcc';
+            ctx.shadowBlur = 15;
+            ctx.fillText(formattedNumber, 300, 202); // 稍微調整Y軸居中
+            ctx.shadowBlur = 0;
+
+            // 6. 繪製恭喜與祝福文字 (使用你指定的文字)
+            ctx.font = fontBody;
+            ctx.fillStyle = '#000000';
+            ctx.fillText('恭喜您加入有線耳機復活計畫', 300, 280);
+            
+            ctx.font = 'italic 22px "PML", "PMingLiU", serif';
+            ctx.fillStyle = '#339966'; // 深綠色
+            ctx.fillText('祝您有玫好的一天', 300, 320); // 準確使用 "玫"
+
+            // 7. 繪製頁尾小字
+            ctx.font = '12px monospace';
+            ctx.fillStyle = 'rgba(0,0,0,0.5)';
+            ctx.fillText('revival.card.v1 | pml-fonts', 300, 370);
+
+            // ======= 🌟 下載圖片 =======
+            // 關閉輸入視窗
+            nameModal.style.display = 'none';
+
+            // 將 Canvas 轉換為圖片網址 (PNG 格式)
+            const imageParams = canvas.toDataURL('image/png');
+            
+            // 建立一個隱藏的下載連結
+            const downloadLink = document.createElement('a');
+            downloadLink.download = `wired-revival-card-${formattedNumber}.png`; // 設定下載檔名
+            downloadLink.href = imageParams;
+            
+            // 觸發點擊下載
+            document.body.appendChild(downloadLink);
+            downloadLink.click();
+            document.body.removeChild(downloadLink); // 下載完移除連結
+        }
     </script>
 
 </body>
