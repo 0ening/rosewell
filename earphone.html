@@ -1,121 +1,237 @@
 <!DOCTYPE html>
 <html lang="zh-TW">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>有線耳機復活計畫 | 會員編號</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
-    <style>
-        * { box-sizing: border-box; margin: 0; padding: 0; }
-        body {
-            font-family: "PML", 'Songti TC', 'PMingLiU', '新細明體', 'Kaiti TC', serif;
-            background-image: url('r.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-            cursor: crosshair;
-        }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            backdrop-filter: blur(2px) brightness(95%);
-            background-color: rgba(244, 246, 248, 0.4);
-            z-index: 1;
-        }
-        
-        .top-nav { position: absolute; top: 20px; width: 100%; max-width: 800px; display: flex; padding: 0 20px; z-index: 10; font-weight: bold; font-size: 1.1rem; }
-        .nav-links { background-color: #fff; border: 1px solid #000; padding: 6px 15px; display: flex; align-items: center; }
-        .nav-links a { color: #000; text-decoration: underline; margin-right: 15px; cursor: pointer; }
-        .nav-links a:hover { color: #666; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>有線耳機復活計畫 | 會員編號</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
+    <style>
+        body {
+            font-family: "PML", 'PMingLiU', '新細明體', serif;
+            background-image: url('r.jpg'); /* 沿用好看的背景圖 */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0;
+        }
+        body::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            backdrop-filter: blur(2px) brightness(95%);
+            -webkit-backdrop-filter: blur(2px) brightness(95%);
+            background-color: rgba(244, 246, 248, 0.4);
+            z-index: 1;
+        }
+        .counter-box {
+            position: relative;
+            z-index: 2;
+            background-color: #99ffcc; /* 薄荷綠 */
+            border: 1px solid #55cc99;
+            border-radius: 4px; /* 無名小站方塊感 */
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15);
+            max-width: 400px;
+            width: 80%;
+        }
+        h2 {
+            font-size: 1.3rem;
+            color: #000000;
+            /* 🌟 直接歸零！不留任何底部空間 */
+            margin-bottom: 0px; 
+            margin-top: 0; 
+        }
+        .number-area {
+            display: inline-block;
+            background: #000000; /* 經典黑底框 */
+            border: 1px dashed #ffffff;
+            padding: 12px 24px;
+            margin: 10px 0;
+            box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5);
+        }
+        .custom-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #00ffcc; /* 薄荷綠電子字 */
+            letter-spacing: 4px;
+            font-family: monospace, serif;
+            text-shadow: 0px 0px 8px #00ffcc, 0px 0px 3px #ffffff;
+        }
 
-        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.7); border: 2px solid #000; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; }
-        
-        /* 🌟 移除綠色方框，改成純黑字 */
-        h2 { font-size: 1.4rem; color: #000; margin-bottom: 10px; font-weight: bold; }
-        .info-text { color: #000; font-size: 1.05rem; font-weight: bold; margin: 5px 0; }
-        
-        .number-area { display: inline-block; background-color: #000; padding: 10px 25px; margin: 15px 0; border: 2px solid #000; }
-        .custom-number { font-size: 2.6rem; font-weight: bold; color: #fff; letter-spacing: 5px; font-family: 'Courier New', monospace; }
+        /* 🌟 1. 規則小文字連結樣式 */
+        .rules-link {
+            display: inline-block;
+            margin-top: 15px;
+            font-size: 0.85rem;
+            color: #cc66ff;
+            text-decoration: none;
+            border-bottom: 1px dashed #cc66ff; /* 復古虛線底線 */
+            transition: all 0.2s ease;
+        }
+        .rules-link:hover {
+            color: #cc66ff; /* 滑鼠移過去變紫色 */
+            border-bottom: 1px dashed #cc66ff;
+            text-shadow: 0px 0px 5px rgba(204, 102, 255, 0.5);
+        }
 
-        .text-link { display: inline-block; margin-top: 15px; font-size: 1.05rem; color: #000; font-weight: bold; text-decoration: none; border-bottom: 1.5px solid #000; cursor: pointer; padding: 2px 5px; }
-        .text-link:hover { color: #666; border-bottom: 1.5px dashed #666; }
+        /* 🌟 2. 彈出視窗的全畫面半透明黑底遮罩 */
+        .modal-overlay {
+            display: none; /* 預設隱藏 */
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            z-index: 100; /* 確保浮在最上層 */
+            justify-content: center;
+            align-items: center;
+        }
 
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 100; justify-content: center; align-items: center; }
-        .modal-content { background: #fff; border: 2px solid #000; width: 85%; max-width: 350px; padding: 30px; position: relative; }
-        .close-btn { position: absolute; top: 5px; right: 5px; cursor: pointer; font-weight: bold; }
-        .rules-title { font-weight: bold; margin-bottom: 15px; }
-        .name-input { width: 100%; padding: 10px; border: 1px solid #000; margin-bottom: 15px; }
-        .submit-btn { width: 100%; padding: 10px; background: #000; color: #fff; cursor: pointer; font-weight: bold; }
-    </style>
+        /* 🌟 3. 彈出視窗的白色復古框框本體 */
+        .modal-content {
+            background-color: #ADFEDC; 
+            border: 2px solid #000000; /* 經典黑粗框 */
+            box-shadow: 4px 4px 0px rgb(0, 204, 255); /* 紫色錯位陰影 */
+            width: 85%;
+            max-width: 350px;
+            padding: 25px 20px;
+            position: relative;
+            text-align: left;
+        }
+
+        /* 🌟 4. 視窗右上角的復古 X 關閉按鈕 */
+        .close-btn {
+            position: absolute;
+            top: 6px; right: 6px;
+            background: #ffcccc; /* 偷用你賣貨便的粉紅色 */
+            border: 1px solid #000000;
+            font-family: monospace, serif;
+            font-size: 0.9rem;
+            font-weight: bold;
+            color: #000;
+            cursor: pointer;
+            padding: 2px 6px;
+        }
+        .close-btn:hover {
+            background: #ff9999;
+        }
+
+        /* 視窗內部的文字排版 */
+        .rules-title {
+            font-size: 1.05rem;
+            font-weight: bold;
+            color: #00BB00;
+            margin-bottom: 15px;
+            text-align: center;
+            text-decoration: underline;
+        }
+        .rules-list {
+            margin: 0;
+            padding-left: 20px;
+            color: #00BB00;
+            font-size: 0.85rem;
+            line-height: 1.6;
+        }
+        .rules-list li { margin-bottom: 8px; }
+    </style>
 </head>
 <body>
 
-    <div class="top-nav">
-        <div class="nav-links">
-            <a href="#">播放</a><a href="#">暫停</a><a href="#">取消</a><a href="index.html">回到主頁</a>
-        </div>
-    </div>
+    <div class="counter-box">
+        <h2>✮ 有線耳機復活計畫 ♫</h2>
+        <p style="color: #339966; margin-bottom: 0px;">恭喜你成為有線耳機復活計畫的一員！</p>
+        <p style="color: #339966; margin-bottom: 0px;">♪ 好時光都該被寶貝因為有線~ ♪</p>
+        <p style="color: #1e293b; margin-bottom: 20px; font-size: 1.1rem;">您是第</p>
+        
+        <div class="number-area">
+            <span id="member-id" class="custom-number">000000</span>
+        </div>
+        
+        <p style="color: #1e293b; margin-top: 20px; font-size: 1.1rem;">位加入的會員</p>
+        
+        <a href="#" id="open-rules-btn" class="rules-link">✞ 點我查看會員規則 ✞</a>
+    </div>
 
-    <div class="counter-box">
-        <h2>歡迎加入</h2><h2>有線耳機復活俱樂部</h2>
-        <p class="info-text">您是第</p>
-        <div class="number-area"><span id="member-id" class="custom-number">------</span></div>
-        <p class="info-text">位會員</p>
-        <div class="links-container">
-            <a href="#" id="open-rules-btn" class="text-link">查看規則</a>
-            <button id="download-trigger-btn" class="text-link" disabled>下載會員卡</button>
-        </div>
-    </div>
+    <div id="rules-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-rules-btn" class="close-btn">X</button>
+            <div class="rules-title">★ 秘密會員規則 ★</div>
+            <ul class="rules-list">
+                <li>1.需每天帶有線耳機出門。</li>
+                <li>2.擁有【有線耳機復活計畫】小卡。</li>
+                <li>3.尊重所有類型的音樂，並遵守「不批判、不比較、不評論」的原則。</li>
+                <li>4.音樂沒有優劣之分，所有人都能擁有自己的信仰。</li>
+            </ul>
+        </div>
+    </div>
 
-    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">會員規則</div><ul class="rules-list" style="list-style:none;"><li>需每天帶有線耳機。</li><li>尊重音樂信仰。</li></ul></div></div>
-    <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="input-title">建立會員卡</div><input type="text" id="user-name-input" class="name-input" placeholder="輸入暱稱" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定產生</button></div></div>
+    <script>
+        // ======= 彈出視窗控制邏輯 =======
+        const modal = document.getElementById('rules-modal');
+        const openBtn = document.getElementById('open-rules-btn');
+        const closeBtn = document.getElementById('close-rules-btn');
 
-    <canvas id="download-canvas" width="600" height="400" style="display:none;"></canvas>
+        // 點擊文字連結時打開視窗
+        openBtn.addEventListener('click', function(event) {
+            event.preventDefault(); // 阻止連結跳轉到網頁最上方
+            modal.style.display = 'flex';
+        });
 
-    <script>
-        const rulesModal = document.getElementById('rules-modal');
-        const nameModal = document.getElementById('name-modal');
-        const numberElement = document.getElementById('member-id');
-        const downloadBtn = document.getElementById('download-trigger-btn');
-        
-        document.getElementById('open-rules-btn').onclick = (e) => { e.preventDefault(); rulesModal.style.display = 'flex'; };
-        document.getElementById('close-rules-btn').onclick = () => rulesModal.style.display = 'none';
-        document.getElementById('close-name-btn').onclick = () => nameModal.style.display = 'none';
-        downloadBtn.onclick = () => nameModal.style.display = 'flex';
+        // 點擊 X 按鈕時關閉視窗
+        closeBtn.addEventListener('click', function() {
+            modal.style.display = 'none';
+        });
 
-        // 重新修復動畫邏輯
-        function startCounter() {
-            const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
-            
-            // 隨機跳動直到連線成功
-            let isFetched = false;
-            const interval = setInterval(() => {
-                if(!isFetched) numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
-            }, 100);
+        // 點擊黑色半透明遮罩(空白處)時也能關閉視窗
+        window.addEventListener('click', function(event) {
+            if (event.target === modal) {
+                modal.style.display = 'none';
+            }
+        });
 
-            fetch(gasUrl)
-                .then(r => r.json())
-                .then(d => {
-                    isFetched = true;
-                    clearInterval(interval);
-                    numberElement.innerText = String(d.value).padStart(6, '0');
-                    downloadBtn.disabled = false;
-                })
-                .catch(() => {
-                    isFetched = true;
-                    clearInterval(interval);
-                    numberElement.innerText = "100001";
-                    downloadBtn.disabled = false;
-                });
-        }
-        startCounter();
-    </script>
+        // ======= 計數器動畫邏輯 =======
+        const numberElement = document.getElementById('member-id');
+        let finalNumber = 1; 
+        let isLoaded = false;
+        const duration = 1500; 
+        let startTime = null;
+
+        // ⚠️ 請在這裡貼回你的 Google GAS 網址！
+        const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
+
+        if(gasUrl.indexOf('http') === 0) {
+            fetch(gasUrl)
+                .then(res => res.json())
+                .then(data => {
+                    finalNumber = data.value;
+                    isLoaded = true;
+                })
+                .catch(err => {
+                    finalNumber = 1;
+                    isLoaded = true;
+                });
+        } else {
+            isLoaded = true;
+        }
+
+        function updateCounter(currentTime) {
+            if (!startTime) startTime = currentTime;
+            const elapsedTime = currentTime - startTime;
+            
+            if (elapsedTime < duration || !isLoaded) {
+                const randomDigits = Math.floor(Math.random() * 900000) + 100000;
+                numberElement.innerText = randomDigits;
+                requestAnimationFrame(updateCounter);
+            } else {
+                numberElement.innerText = String(finalNumber).padStart(6, '0');
+            }
+        }
+        requestAnimationFrame(updateCounter);
+    </script>
+
 </body>
 </html>
