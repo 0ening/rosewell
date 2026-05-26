@@ -133,45 +133,44 @@ body::before {
     object-fit: contain;
 }
 
-/* 🟢 薄荷綠色按鈕 (用於 YouTube、貼圖、復活計畫) */
+/* 🟢 薄荷綠色按鈕 */
 .btn-green {
-    background-color: #99ffcc;
+    /* 🌟 換成從左上到右下的漸層（薄荷綠 ➔ 科技深綠） */
+    background: linear-gradient(135deg, #99ffcc, #4dffb8); 
     color: #000000; 
     border: 1px solid #55cc99; 
-    /* 🌟 讓按鈕背後散發淡淡的薄荷綠光暈 */
     box-shadow: 0px 0px 15px rgba(85, 204, 153, 0.6);
-    /* 🟢 純粹的霓虹亮綠色文字光 */
     text-shadow: 0px 0px 5px #00ff00, 0px 0px 12px #00cc00;
-} /* 🌟 幫你補上這裡剛剛漏掉的右括號 */
+    /* (如果你前面有設定變形蟲圓角 border-radius，記得保留它喔！) */
+}
 
-/* 🟢 薄荷綠 Hover：滑鼠移過去時光暈變亮 */
+/* 🟢 薄荷綠 Hover */
 .btn-green:hover {
     transform: none; 
-    background-color: #ccffe6; 
+    /* 🌟 移過去時，漸層會變得更亮一點 */
+    background: linear-gradient(135deg, #ccffe6, #66ffcc); 
     border: 1px dashed #000000; 
-    /* 🌟 滑鼠移過去時，綠光稍微放大變亮，並保留無名小站的復古硬陰影 */
     box-shadow: 0px 0px 20px rgba(85, 204, 153, 0.9), 2px 2px 0px rgba(0, 0, 0, 0.15);
     text-shadow: 0px 0px 5px #00ff00, 0px 0px 12px #00cc00; 
 }
 
-/* 🟡 賣貨便粉色按鈕 (已改成 #ffcccc) */
+/* 🟡 賣貨便粉色按鈕 */
 .btn-yellow {
-    background-color: #ffccff; 
+    /* 🌟 換成草莓牛奶漸層（淡粉 ➔ 帶點紫的深粉） */
+    background: linear-gradient(135deg, #ffcccc, #ff99cc); 
     color: #000000; 
-    border: 1px solid #ff9999; /* 🌟 搭配粉紅色的邊框 */
-    /* 🌟 幫你把背後的光暈也換成淡淡的粉紅光 */
+    border: 1px solid #ff9999; 
     box-shadow: 0px 0px 15px rgba(255, 153, 153, 0.6);
-    /* 保持文字白光 */
     text-shadow: 0px 0px 8px rgba(255, 255, 255, 1), 0px 0px 4px rgba(255, 255, 255, 1);
 }
 
-/* 🟡 賣貨便粉色按鈕 Hover */
+/* 🟡 賣貨便粉色 Hover */
 .btn-yellow:hover {
     transform: none;
-    background-color: #ffe6e6; /* 🌟 移過去變成更淺一點的粉白 */
+    background: linear-gradient(135deg, #ffe6e6, #ffb3d9); 
     border: 1px dashed #000000; 
     box-shadow: 0px 0px 20px rgba(255, 153, 153, 0.9), 2px 2px 0px rgba(0, 0, 0, 0.15);
-} 
+}
 
 /* 滑鼠點擊時的微幅反饋 */
 .link-btn:active {
