@@ -5,31 +5,21 @@
     box-sizing: border-box;
 }
 
-/* 基礎重設 */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-/* 🌟 iPhone 專用修復：獨立一個固定圖層來放背景圖 */
+/* 🌟 iPhone 專用背景修復魔法 */
 html::before {
     content: "";
-    position: fixed; /* 強制固定，iPhone 就不會錯亂 */
+    position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     background-image: url('r.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    z-index: -2; /* 放在網頁的最底層 */
+    z-index: -2;
 }
 
 body {
     /* 復古新細明體 */
     font-family: 'Songti TC', 'PMingLiU', '新細明體', serif;
-    
-    /* (原本的背景設定已經移到 html::before 裡了，這裡清空) */
-    
     min-height: 100vh;
     display: flex;
     flex-direction: column;
@@ -41,27 +31,33 @@ body {
 /* 背景半透明遮罩 */
 body::before {
     content: "";
-    position: fixed; /* 🌟 這裡也改成 fixed，這樣手機往下滑的時候，白紗才不會跟著斷掉 */
+    position: fixed;
     top: 0; left: 0; width: 100%; height: 100%;
     backdrop-filter: blur(2px) brightness(95%); 
     -webkit-backdrop-filter: blur(2px) brightness(95%);
     background-color: rgba(244, 246, 248, 0.4); 
-    z-index: -1; /* 放在背景圖 (-2) 的上面一層 */
+    z-index: -1; 
 }
 
-/* 🌟 頂部裝飾跑馬燈 (換回復古灰色) */
+/* ========================== */
+/* 🌟 淺螢光綠小方塊區塊       */
+/* ========================== */
+
+/* 跑馬燈小方塊 */
 .top-marquee {
-    width: 100%;
+    background-color: #ccffcc; /* 淺螢光綠 */
+    border: 1px solid #99ff99; /* 復古細邊框 */
+    padding: 6px 20px;
     text-align: center;
-    color: rgba(100, 100, 100, 0.8);
+    color: #000000;
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     letter-spacing: 2px;
     margin-bottom: 20px;
     font-family: 'Times New Roman', serif;
 }
 
-/* 🌟 頂部導覽列 (換回 Y2K 亮藍色) */
+/* 頂部導覽列容器 */
 .top-nav {
     width: 100%;
     max-width: 800px;
@@ -72,23 +68,35 @@ body::before {
     font-size: 1.1rem;
 }
 
+/* 導覽列與歡迎詞的小方塊 */
+.nav-links, .welcome-text {
+    background-color: #ccffcc; /* 淺螢光綠 */
+    border: 1px solid #99ff99;
+    padding: 6px 15px;
+    display: flex;
+    align-items: center;
+}
+
 .nav-links a {
-    color: #0077ff; /* 復古經典藍 */
+    color: #0077ff; 
     text-decoration: underline;
     margin-right: 15px;
-    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.9);
+}
+.nav-links a:last-child {
+    margin-right: 0;
 }
 .nav-links a:hover { 
-    color: #00bfff; /* 滑過變亮藍色 */
-    background: rgba(255,255,255,0.6); 
+    color: #00bfff; 
 }
 
 .welcome-text {
     color: #0077ff;
-    text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.9);
 }
 
-/* 🌟 雙排連結區 (完美對齊) */
+/* ========================== */
+/* 🌟 雙排連結與留言板區塊     */
+/* ========================== */
+
 .main-columns {
     display: flex;
     justify-content: center;
@@ -104,7 +112,6 @@ body::before {
     gap: 15px; 
 }
 
-/* 復古文字連結共用樣式 */
 .retro-link {
     font-size: 1.1rem;
     font-weight: bold;
@@ -113,22 +120,18 @@ body::before {
     text-shadow: 0px 0px 4px rgba(255, 255, 255, 0.9);
 }
 
-/* 左邊藍色字 */
 .blue-link { color: #3333cc; }
 .blue-link:hover { color: #0000ff; background: rgba(255,255,255,0.6); }
 
-/* 右邊紫色字 */
 .purple-link { color: #990099; }
 .purple-link:hover { color: #cc00cc; background: rgba(255,255,255,0.6); }
 
-/* ========================== */
-/* 🌟 秘密留言板專區 (換回復古紫色框) */
-/* ========================== */
+/* 秘密留言板 */
 .guestbook-section {
     width: 100%;
     max-width: 600px;
     background: rgba(255, 255, 255, 0.6);
-    border: 1px dashed #990099; /* 復古紫虛線框 */
+    border: 1px dashed #990099; 
     padding: 20px;
     border-radius: 10px;
     text-align: left;
@@ -156,7 +159,7 @@ body::before {
     border-bottom: 1px dotted rgba(0,0,0,0.2);
     padding-bottom: 5px;
 }
-.msg-name { font-weight: bold; color: #3333cc; } /* 留言者名字用藍色 */
+.msg-name { font-weight: bold; color: #3333cc; } 
 .loading-msg { text-align: center; color: #666; font-style: italic; margin-top: 20px; }
 
 .guestbook-form {
