@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>秘密基地</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -18,7 +18,7 @@
             <a href="#">播放</a>
             <a href="#">暫停</a>
             <a href="#">取消</a>
-            <a href="#">回到過去</a>
+            <a href="index.html">回到主頁</a>
         </div>
         <div class="welcome-text">
             🌀歡迎光臨秘密基地🌀
@@ -27,10 +27,10 @@
 
     <div class="main-columns">
         <div class="col left-col">
-            <a href="https://myship.7-11.com.tw/general/detail/GM2605239792358" class="retro-link blue-link">賣貨便</a>
-            <a href="https://store.line.me/stickershop/product/33026754/zh-Hant" class="retro-link blue-link">原創插畫LINE貼圖</a>
-            <a href="https://store.line.me/stickershop/product/32046311/zh-Hant" class="retro-link blue-link">恐怕泰龍LINE貼圖</a>
-            <a href="https://www.youtube.com/@0ening_2023" class="retro-link blue-link">YouTube作品</a>
+            <a href="https://myship.7-11.com.tw/general/detail/GM2605239792358" target="_blank" class="retro-link blue-link">賣貨便</a>
+            <a href="https://store.line.me/stickershop/product/33026754/zh-Hant" target="_blank" class="retro-link blue-link">原創插畫LINE貼圖</a>
+            <a href="https://store.line.me/stickershop/product/32046311/zh-Hant" target="_blank" class="retro-link blue-link">恐怕泰龍LINE貼圖</a>
+            <a href="https://www.youtube.com/@0ening_2023" target="_blank" class="retro-link blue-link">YouTube作品</a>
         </div>
         
         <div class="col right-col">
@@ -56,7 +56,6 @@
     </div>
 
     <script>
-        // 你的 Google Apps Script 網址 (請確認是你剛剛重新部署的那個)
         const gasUrl = 'https://script.google.com/macros/s/AKfycbzJZ8IJGcObUCsw4shxqxdSjw2IJltQbWJQpf1LJq-jqAnlnO5yscF9ixz_JEKQwbGEaA/exec';
         
         const msgList = document.getElementById('message-list');
@@ -64,13 +63,12 @@
         const nameInput = document.getElementById('gb-name');
         const msgInput = document.getElementById('gb-msg');
 
-        // 1. 網頁載入時，抓取最新留言
         function fetchMessages() {
             fetch(gasUrl)
                 .then(res => res.json())
                 .then(data => {
                     if (data.messages && data.messages.length > 0) {
-                        msgList.innerHTML = ''; // 清空載入中文字
+                        msgList.innerHTML = ''; 
                         data.messages.forEach(item => {
                             const msgDiv = document.createElement('div');
                             msgDiv.className = 'msg-item';
@@ -86,10 +84,8 @@
                 });
         }
         
-        // 啟動抓取
         fetchMessages();
 
-        // 2. 點擊送出留言
         submitBtn.addEventListener('click', () => {
             const name = nameInput.value.trim() || '神秘客';
             const msg = msgInput.value.trim();
@@ -102,18 +98,16 @@
             submitBtn.innerText = '傳送中...';
             submitBtn.disabled = true;
 
-            // 組合送出的網址
             const submitUrl = `${gasUrl}?action=add&name=${encodeURIComponent(name)}&msg=${encodeURIComponent(msg)}`;
 
             fetch(submitUrl)
                 .then(res => res.json())
                 .then(data => {
-                    // 送出成功，清空輸入框並重新抓取留言
                     msgInput.value = '';
                     submitBtn.innerText = '送出留言';
                     submitBtn.disabled = false;
                     msgList.innerHTML = '<div class="loading-msg">更新留言中...</div>';
-                    fetchMessages(); // 重新整理列表
+                    fetchMessages(); 
                 })
                 .catch(err => {
                     alert('傳送失敗，請稍後再試。');
@@ -122,7 +116,5 @@
                 });
         });
     </script>
-</body>
-</html>
 </body>
 </html>
