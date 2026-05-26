@@ -36,6 +36,40 @@
             z-index: 1;
         }
         
+        /* 🌟 新增：頂部導覽列與淺螢光綠小方塊 */
+        .top-nav {
+            position: absolute;
+            top: 20px;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: flex-start;
+            padding: 0 20px;
+            z-index: 10;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .nav-links {
+            background-color: #ccffcc; /* 淺螢光綠 */
+            border: 1px solid #99ff99; /* 復古邊框 */
+            padding: 6px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #0077ff; 
+            text-decoration: underline;
+            margin-right: 15px;
+        }
+        .nav-links a:last-child {
+            margin-right: 0;
+        }
+        .nav-links a:hover {
+            color: #00bfff;
+        }
+        
         /* 中間的白色主區塊 */
         .counter-box {
             position: relative;
@@ -45,6 +79,7 @@
             text-align: center;
             max-width: 400px;
             width: 85%;
+            margin-top: 50px; /* 稍微往下推一點，避免跟導覽列重疊 */
         }
         
         h2 {
@@ -224,6 +259,15 @@
     </style>
 </head>
 <body>
+
+    <div class="top-nav">
+        <div class="nav-links">
+            <a href="#">播放</a>
+            <a href="#">暫停</a>
+            <a href="#">取消</a>
+            <a href="index.html">回到主頁</a>
+        </div>
+    </div>
 
     <div class="counter-box">
         <h2>歡迎加入</h2>
