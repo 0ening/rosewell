@@ -6,12 +6,7 @@
     <title>有線耳機復活計畫 | 會員編號</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-        
+        * { box-sizing: border-box; margin: 0; padding: 0; }
         body {
             font-family: "PML", 'Songti TC', 'PMingLiU', '新細明體', 'Kaiti TC', serif;
             background-image: url('r.jpg');
@@ -24,255 +19,109 @@
             justify-content: center;
             align-items: center;
             position: relative;
-            cursor: crosshair; /* 🌟 復古十字游標 */
+            cursor: crosshair;
         }
         body::before {
             content: "";
             position: absolute;
             top: 0; left: 0; width: 100%; height: 100%;
             backdrop-filter: blur(2px) brightness(95%);
-            -webkit-backdrop-filter: blur(2px) brightness(95%);
             background-color: rgba(244, 246, 248, 0.4);
             z-index: 1;
         }
         
-        /* 頂部導覽列 */
-        .top-nav {
-            position: absolute;
-            top: 20px;
-            width: 100%;
-            max-width: 800px;
-            display: flex;
-            justify-content: flex-start;
-            padding: 0 20px;
-            z-index: 10;
-            font-weight: bold;
-            font-size: 1.1rem;
-        }
+        .top-nav { position: absolute; top: 20px; width: 100%; max-width: 800px; display: flex; padding: 0 20px; z-index: 10; font-weight: bold; font-size: 1.1rem; }
+        .nav-links { background-color: #ccffcc; border: 1px solid #99ff99; padding: 6px 15px; display: flex; align-items: center; }
+        .nav-links a { color: #0077ff; text-decoration: underline; margin-right: 15px; cursor: pointer; }
+        .nav-links a:hover { color: #00bfff; }
+
+        .club-marquee { position: absolute; top: 70px; width: 100%; background: #000000; color: #ccffcc; padding: 5px 0; border: 1px dashed #ccffcc; z-index: 5; font-size: 0.95rem; letter-spacing: 2px; }
         
-        .nav-links {
-            background-color: #ccffcc; 
-            border: 1px solid #99ff99; 
-            padding: 6px 15px;
-            display: flex;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #0077ff; 
-            text-decoration: underline;
-            margin-right: 15px;
-            cursor: pointer;
-        }
-        .nav-links a:last-child {
-            margin-right: 0;
-        }
-        .nav-links a:hover {
-            color: #00bfff;
-        }
-
-        /* 🌟 新增：專屬俱樂部跑馬燈 */
-        .club-marquee {
-            position: absolute;
-            top: 70px;
-            width: 100%;
-            background: #000000;
-            color: #ccffcc;
-            font-family: 'Courier New', monospace;
-            padding: 5px 0;
-            border-top: 1px dashed #ccffcc;
-            border-bottom: 1px dashed #ccffcc;
-            z-index: 5;
-            font-size: 0.95rem;
-            letter-spacing: 2px;
-        }
+        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.65); border: 2px dashed #990099; box-shadow: 8px 8px 0px #ccffcc; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; margin-top: 60px; }
         
-        /* 中間的主容器 (🌟 升級為 Y2K 復古視窗) */
-        .counter-box {
-            position: relative;
-            z-index: 2;
-            background-color: rgba(255, 255, 255, 0.65); /* 微透白底 */
-            border: 2px dashed #990099; /* 紫色虛線框 */
-            box-shadow: 8px 8px 0px #ccffcc; /* 🌟 淺螢光綠的硬邊立體陰影 */
-            padding: 40px 25px;
-            text-align: center;
-            max-width: 400px;
-            width: 85%;
-            display: flex;
-            flex-direction: column;
-            align-items: center; 
-            margin-top: 60px; 
-        }
-
-        /* 🌟 新增：角落裝飾符號 */
-        .decor-icon {
-            position: absolute;
-            color: #990099;
-            font-size: 1.2rem;
-        }
+        .decor-icon { position: absolute; color: #990099; font-size: 1.2rem; }
         .decor-tl { top: 10px; left: 15px; }
         .decor-br { bottom: 10px; right: 15px; }
         
-        /* 標題淺螢光綠小方塊 */
-        h2 {
-            font-size: 1.2rem; /* 稍微縮小字體以容納更多字 */
-            color: #000000;
-            margin: 0; 
-            line-height: 1.2;
-            font-weight: bold;
-            background-color: #ccffcc; 
-            border: 1px solid #99ff99; 
-            display: inline-block; 
-            padding: 6px 15px;
-            margin-bottom: 5px; 
-            border-radius: 0; 
-            text-shadow: none; 
-        }
+        h2, .info-text { background-color: #ccffcc; border: 1px solid #99ff99; display: inline-block; padding: 6px 15px; margin-bottom: 5px; font-weight: bold; }
         
-        .info-text {
-            color: #000000; 
-            font-size: 1.05rem; 
-            font-weight: bold;
-            background-color: #ccffcc;
-            border: 1px solid #99ff99;
-            display: inline-block;
-            padding: 4px 10px;
-            border-radius: 0;
-            margin: 5px 0;
-            text-shadow: none; 
-        }
+        .number-area { display: inline-block; background-color: #000000; border: 2px dashed #ccffcc; padding: 10px 25px; margin: 15px 0; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); }
+        .custom-number { font-size: 2.6rem; font-weight: bold; color: #ccffcc; letter-spacing: 5px; font-family: 'Courier New', monospace; text-shadow: 0px 0px 8px #ccffcc; }
+
+        .text-link { display: inline-block; margin-top: 15px; font-size: 1.05rem; color: #000000; font-weight: bold; text-decoration: none; border-bottom: 1.5px solid #000000; background: transparent; cursor: pointer; padding: 2px 5px; }
+        .text-link:hover { transform: scale(1.05); color: #990099; border-bottom: 1.5px dashed #990099; }
+
+        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 100; justify-content: center; align-items: center; }
+        .modal-content { background: #fff; border: 2px dashed #990099; box-shadow: 6px 6px 0px #ccffcc; width: 85%; max-width: 350px; padding: 30px; position: relative; }
+        .close-btn { position: absolute; top: 5px; right: 5px; cursor: pointer; font-weight: bold; }
+        .rules-title { font-weight: bold; color: #990099; margin-bottom: 15px; }
+        .name-input { width: 100%; padding: 10px; border: 1px solid #000; margin-bottom: 15px; }
+        .submit-btn { width: 100%; padding: 10px; background: transparent; border: 1.5px solid #990099; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <div class="top-nav">
+        <div class="nav-links">
+            <a href="#">播放</a><a href="#">暫停</a><a href="#">取消</a><a href="index.html">回到主頁</a>
+        </div>
+    </div>
+
+    <div class="club-marquee">
+        <marquee scrollamount="4">♫ 歡迎來到類比時代的最後淨土 ♫ 插入有線耳機，隔絕數位世界的喧囂 ♫ 祝您有玫好的一天 ♫</marquee>
+    </div>
+
+    <div class="counter-box">
+        <div class="decor-icon decor-tl">🎧</div>
+        <div class="decor-icon decor-br">★</div>
+        <h2>歡迎加入</h2><h2>有線耳機復活俱樂部</h2>
+        <p class="info-text">您是第</p>
+        <div class="number-area"><span id="member-id" class="custom-number">------</span></div>
+        <p class="info-text">位會員</p>
+        <div class="links-container">
+            <a href="#" id="open-rules-btn" class="text-link">✟ 查看規則 ✟</a>
+            <button id="download-trigger-btn" class="text-link" disabled>下載會員卡</button>
+        </div>
+    </div>
+
+    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">✦ 會員規則 ✦</div><ul class="rules-list"><li>需每天帶有線耳機出門。</li><li>擁有【有線耳機復活計畫】小卡。</li><li>尊重音樂。</li></ul></div></div>
+    <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="input-title">✦ 建立會員卡 ✦</div><input type="text" id="user-name-input" class="name-input" placeholder="輸入暱稱" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定產生</button></div></div>
+
+    <canvas id="download-canvas" width="600" height="400" style="display:none;"></canvas>
+
+    <script>
+        // 抓取元素
+        const rulesModal = document.getElementById('rules-modal');
+        const nameModal = document.getElementById('name-modal');
+        const numberElement = document.getElementById('member-id');
+        const downloadBtn = document.getElementById('download-trigger-btn');
         
-        /* 無名小站風電子計數器 */
-        .number-area {
-            display: inline-block;
-            background-color: #000000; 
-            border: 2px dashed #ccffcc; 
-            padding: 10px 25px;
-            margin: 15px 0;
-            box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); 
-        }
-        
-        .custom-number {
-            font-size: 2.6rem;
-            font-weight: bold;
-            color: #ccffcc; 
-            letter-spacing: 5px;
-            font-family: 'Courier New', monospace, serif; 
-            border-bottom: none; 
-            padding: 0;
-            text-shadow: 0px 0px 8px rgba(204, 255, 204, 0.6); 
-        }
+        // 綁定事件
+        document.getElementById('open-rules-btn').onclick = (e) => { e.preventDefault(); rulesModal.style.display = 'flex'; };
+        document.getElementById('close-rules-btn').onclick = () => rulesModal.style.display = 'none';
+        document.getElementById('close-name-btn').onclick = () => nameModal.style.display = 'none';
+        downloadBtn.onclick = () => nameModal.style.display = 'flex';
 
-        /* 文字連結樣式 */
-        .text-link {
-            display: inline-block;
-            margin-top: 15px;
-            font-size: 1.05rem;
-            color: #000000;
-            font-weight: bold;
-            text-decoration: none;
-            border-bottom: 1.5px solid #000000;
-            background: transparent;
-            border-top: none;
-            border-left: none;
-            border-right: none;
-            cursor: pointer;
-            font-family: inherit;
-            padding: 2px 5px;
-            transition: all 0.2s ease;
-            text-shadow: 0px 0px 6px rgba(255, 255, 255, 0.9);
-        }
-        .text-link:hover:not(:disabled) {
-            transform: scale(1.05);
-            border-bottom: 1.5px dashed #990099; /* 🌟 游標滑過變紫色虛線 */
-            color: #990099;
-            background: rgba(255, 255, 255, 0.5);
-        }
-        .text-link:active:not(:disabled) {
-            transform: scale(0.98);
-        }
-        .text-link:disabled {
-            color: #999999;
-            border-bottom-color: #999999;
-            cursor: not-allowed;
-            text-shadow: none;
-        }
+        // 核心邏輯
+        let finalNumber = 0;
+        const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
 
-        /* 彈出視窗樣式 (共用) */
-        .modal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background-color: rgba(255, 255, 255, 0.85); 
-            backdrop-filter: blur(3px);
-            -webkit-backdrop-filter: blur(3px);
-            z-index: 100;
-            justify-content: center;
-            align-items: center;
+        // 動畫
+        function animate() {
+            if(finalNumber === 0) {
+                numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
+                requestAnimationFrame(animate);
+            } else {
+                numberElement.innerText = String(finalNumber).padStart(6, '0');
+            }
         }
+        animate();
 
-        .modal-content {
-            background-color: #ffffff; 
-            border: 2px dashed #990099; /* 紫色虛線框 */
-            box-shadow: 6px 6px 0px #ccffcc; /* 綠色立體陰影 */
-            width: 85%;
-            max-width: 350px;
-            padding: 30px 20px;
-            position: relative;
-            text-align: left;
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 6px; right: 6px;
-            background: transparent;
-            border: none;
-            font-family: monospace, serif;
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: #000;
-            cursor: pointer;
-            padding: 2px 6px;
-        }
-        .close-btn:hover { color: #990099; }
-
-        .rules-title, .input-title {
-            font-size: 1.1rem;
-            font-weight: bold;
-            color: #990099;
-            margin-bottom: 20px;
-            text-align: center;
-            border-bottom: 1px solid #990099;
-            padding-bottom: 5px;
-        }
-        .rules-list {
-            margin: 0;
-            padding-left: 20px;
-            color: #000000;
-            font-size: 0.95rem;
-            line-height: 1.8;
-            font-weight: bold;
-        }
-        .rules-list li { margin-bottom: 10px; }
-
-        .name-input {
-            width: 100%;
-            padding: 10px;
-            font-family: inherit;
-            font-size: 1rem;
-            border: 1px solid #000;
-            border-bottom: 2px solid #000;
-            background: transparent;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .name-input:focus {
-            outline: none;
-            background: rgba(204, 255, 204, 0.3); /* 聚焦時有一點淺綠 */
-        }
-        
-        .submit-btn {
-            width: 100%;
-            background: transparent;
-            color: #990099;
-            border: 1.5px solid #99
+        // 獲取數據
+        fetch(gasUrl).then(r => r.json()).then(d => {
+            finalNumber = d.value;
+            downloadBtn.disabled = false;
+        }).catch(() => { finalNumber = 100001; downloadBtn.disabled = false; });
+    </script>
+</body>
+</html>
