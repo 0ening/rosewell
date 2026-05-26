@@ -31,26 +31,28 @@
         }
         
         .top-nav { position: absolute; top: 20px; width: 100%; max-width: 800px; display: flex; padding: 0 20px; z-index: 10; font-weight: bold; font-size: 1.1rem; }
-        .nav-links { background-color: #ccffcc; border: 1px solid #99ff99; padding: 6px 15px; display: flex; align-items: center; }
-        .nav-links a { color: #0077ff; text-decoration: underline; margin-right: 15px; cursor: pointer; }
-        .nav-links a:hover { color: #00bfff; }
+        .nav-links { background-color: #fff; border: 1px solid #000; padding: 6px 15px; display: flex; align-items: center; }
+        .nav-links a { color: #000; text-decoration: underline; margin-right: 15px; cursor: pointer; }
+        .nav-links a:hover { color: #666; }
 
-        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.65); border: 2px dashed #990099; box-shadow: 8px 8px 0px #ccffcc; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; }
+        .counter-box { position: relative; z-index: 2; background-color: rgba(255, 255, 255, 0.7); border: 2px solid #000; padding: 40px 25px; text-align: center; max-width: 400px; width: 85%; display: flex; flex-direction: column; align-items: center; }
         
-        h2, .info-text { background-color: #ccffcc; border: 1px solid #99ff99; display: inline-block; padding: 6px 15px; margin-bottom: 5px; font-weight: bold; }
+        /* 🌟 移除綠色方框，改成純黑字 */
+        h2 { font-size: 1.4rem; color: #000; margin-bottom: 10px; font-weight: bold; }
+        .info-text { color: #000; font-size: 1.05rem; font-weight: bold; margin: 5px 0; }
         
-        .number-area { display: inline-block; background-color: #000000; border: 2px dashed #ccffcc; padding: 10px 25px; margin: 15px 0; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.2); }
-        .custom-number { font-size: 2.6rem; font-weight: bold; color: #ccffcc; letter-spacing: 5px; font-family: 'Courier New', monospace; text-shadow: 0px 0px 8px #ccffcc; }
+        .number-area { display: inline-block; background-color: #000; padding: 10px 25px; margin: 15px 0; border: 2px solid #000; }
+        .custom-number { font-size: 2.6rem; font-weight: bold; color: #fff; letter-spacing: 5px; font-family: 'Courier New', monospace; }
 
-        .text-link { display: inline-block; margin-top: 15px; font-size: 1.05rem; color: #000000; font-weight: bold; text-decoration: none; border-bottom: 1.5px solid #000000; background: transparent; cursor: pointer; padding: 2px 5px; }
-        .text-link:hover { transform: scale(1.05); color: #990099; border-bottom: 1.5px dashed #990099; }
+        .text-link { display: inline-block; margin-top: 15px; font-size: 1.05rem; color: #000; font-weight: bold; text-decoration: none; border-bottom: 1.5px solid #000; cursor: pointer; padding: 2px 5px; }
+        .text-link:hover { color: #666; border-bottom: 1.5px dashed #666; }
 
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(255,255,255,0.9); z-index: 100; justify-content: center; align-items: center; }
-        .modal-content { background: #fff; border: 2px dashed #990099; box-shadow: 6px 6px 0px #ccffcc; width: 85%; max-width: 350px; padding: 30px; position: relative; }
+        .modal-content { background: #fff; border: 2px solid #000; width: 85%; max-width: 350px; padding: 30px; position: relative; }
         .close-btn { position: absolute; top: 5px; right: 5px; cursor: pointer; font-weight: bold; }
-        .rules-title { font-weight: bold; color: #990099; margin-bottom: 15px; }
+        .rules-title { font-weight: bold; margin-bottom: 15px; }
         .name-input { width: 100%; padding: 10px; border: 1px solid #000; margin-bottom: 15px; }
-        .submit-btn { width: 100%; padding: 10px; background: transparent; border: 1.5px solid #990099; cursor: pointer; font-weight: bold; }
+        .submit-btn { width: 100%; padding: 10px; background: #000; color: #fff; cursor: pointer; font-weight: bold; }
     </style>
 </head>
 <body>
@@ -67,13 +69,15 @@
         <div class="number-area"><span id="member-id" class="custom-number">------</span></div>
         <p class="info-text">位會員</p>
         <div class="links-container">
-            <a href="#" id="open-rules-btn" class="text-link">✟ 查看規則 ✟</a>
+            <a href="#" id="open-rules-btn" class="text-link">查看規則</a>
             <button id="download-trigger-btn" class="text-link" disabled>下載會員卡</button>
         </div>
     </div>
 
-    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">✦ 會員規則 ✦</div><ul class="rules-list"><li>需每天帶有線耳機出門。</li><li>擁有【有線耳機復活計畫】小卡。</li></ul></div></div>
-    <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="input-title">✦ 建立會員卡 ✦</div><input type="text" id="user-name-input" class="name-input" placeholder="輸入暱稱" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定產生</button></div></div>
+    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">會員規則</div><ul class="rules-list" style="list-style:none;"><li>需每天帶有線耳機。</li><li>尊重音樂信仰。</li></ul></div></div>
+    <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="input-title">建立會員卡</div><input type="text" id="user-name-input" class="name-input" placeholder="輸入暱稱" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定產生</button></div></div>
+
+    <canvas id="download-canvas" width="600" height="400" style="display:none;"></canvas>
 
     <script>
         const rulesModal = document.getElementById('rules-modal');
@@ -86,24 +90,26 @@
         document.getElementById('close-name-btn').onclick = () => nameModal.style.display = 'none';
         downloadBtn.onclick = () => nameModal.style.display = 'flex';
 
-        // 簡單且穩定的計數動畫
+        // 重新修復動畫邏輯
         function startCounter() {
             const gasUrl = 'https://script.google.com/macros/s/AKfycbzJDHInkQ5G1_rzHGT2dRBbuJSJyJ0l485zbrEpuwWq60PIU983J9CVrwA1qd4pCPpSGg/exec';
             
-            // 先讓它隨機跑
-            let counter = 0;
+            // 隨機跳動直到連線成功
+            let isFetched = false;
             const interval = setInterval(() => {
-                numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
+                if(!isFetched) numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
             }, 100);
 
             fetch(gasUrl)
                 .then(r => r.json())
                 .then(d => {
+                    isFetched = true;
                     clearInterval(interval);
                     numberElement.innerText = String(d.value).padStart(6, '0');
                     downloadBtn.disabled = false;
                 })
                 .catch(() => {
+                    isFetched = true;
                     clearInterval(interval);
                     numberElement.innerText = "100001";
                     downloadBtn.disabled = false;
