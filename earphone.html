@@ -272,35 +272,34 @@
             const canvas = document.getElementById('download-canvas');
             const ctx = canvas.getContext('2d');
 
-            function drawTextAndSave() {
-                ctx.fillStyle = 'rgba(255, 255, 255, 0.7)';
-                ctx.fillRect(0, 0, 600, 400);
+           function drawTextAndSave() {
+                // 1. 繪製背景圖 (填滿整個畫布)
+                ctx.drawImage(bgImg, 0, 0, 600, 400); 
 
-                ctx.strokeStyle = '#000000';
-                ctx.lineWidth = 2;
-                ctx.strokeRect(20, 20, 560, 360);
+                // 2. 設定文字基準點為「正中間」
+                ctx.textAlign = 'center';      // 水平對齊：中間
+                ctx.textBaseline = 'middle';   // 垂直對齊：中間
+                
+                // 3. 設定文字顏色與陰影 (確保在圖上清晰)
+                ctx.fillStyle = '#000000';     // 文字改為黑色 (可依需求改色)
+                ctx.shadowColor = "rgba(255, 255, 255, 0.8)"; // 加上白色發光底，避免背景太花看不清
+                ctx.shadowBlur = 7;
 
-                ctx.textAlign = 'center';
-                ctx.textBaseline = 'middle';
-                ctx.fillStyle = '#000000'; 
+                // 🌟 指令 A：寫下標題 (放在 Y=120 的位置)
+                ctx.font = 'bold 36px "PML", "PMingLiU", "新細明體", serif';
+                ctx.fillText('有線耳機復活計畫', 300, 120);
 
-                ctx.font = 'bold 32px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText('歡迎加入有線耳機復活俱樂部', 300, 100);
+                // 🌟 指令 B：寫下暱稱 (放在正中間 Y=200)
+                ctx.font = 'bold 28px "PML", "PMingLiU", "新細明體", serif';
+                ctx.fillText(`MEMBER: ${name}`, 300, 200);
 
-                ctx.beginPath();
-                ctx.moveTo(120, 140);
-                ctx.lineTo(480, 140);
-                ctx.lineWidth = 1;
-                ctx.stroke();
+                // 🌟 指令 C：寫下編號 (放在 Y=260)
+                ctx.font = 'bold 24px monospace';
+                ctx.fillText(`NO. ${formattedNumber}`, 300, 260);
 
-                ctx.font = 'bold 24px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText(`會員：${name}`, 300, 200);
-
-                ctx.font = 'bold 24px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText(`編號：${formattedNumber}`, 300, 250);
-
-                ctx.font = 'italic 22px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText('祝您有玫好的一天', 300, 320);
+                // 4. 下載圖片邏輯 (保持不變)
+                saveCanvasAsImage(formattedNumber);
+            }
 
                 nameModal.style.display = 'none';
                 const imageParams = canvas.toDataURL('image/png');
