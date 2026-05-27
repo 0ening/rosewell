@@ -230,3 +230,29 @@ body::before {
     text-align: center;
     text-decoration: underline;
 }
+
+/* 🌟 手機螢幕優化 (當螢幕寬度小於 600px 時自動調整) */
+@media (max-width: 600px) {
+    .main-columns {
+        flex-direction: column; /* 把橫向排列改成直向 */
+        gap: 20px; /* 縮小中間間距 */
+        align-items: center;
+    }
+    
+    .top-nav {
+        flex-direction: column; /* 讓導覽列變垂直 */
+        align-items: center;
+        position: relative; /* 取消絕對定位，讓它自然排列 */
+        margin-bottom: 20px;
+    }
+    
+    .counter-box {
+        width: 95%; /* 讓方塊填滿手機螢幕 */
+        padding: 20px;
+    }
+    
+    #inline-yt-player iframe {
+        width: 100%; /* 讓音樂播放器寬度自動適應 */
+        height: auto;
+    }
+}
