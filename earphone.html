@@ -264,52 +264,48 @@
                 numberElement.innerText = "100001";
             });
 
-        // ======= Canvas 畫卡片與下載 =======
+     // ======= 會員卡產生指令區 =======
         document.getElementById('confirm-download-btn').addEventListener('click', () => {
             const userNameInput = document.getElementById('user-name-input');
-            const name = userNameInput.value.trim() || '神秘會員'; 
+            const name = userNameInput.value.trim() || '隱形會員'; 
             const formattedNumber = String(finalNumber).padStart(6, '0');
             const canvas = document.getElementById('download-canvas');
             const ctx = canvas.getContext('2d');
 
-           function drawTextAndSave() {
-                // 1. 繪製背景圖 (填滿整個畫布)
+            const bgImg = new Image();
+            bgImg.crossOrigin = "Anonymous"; 
+            bgImg.src = '9.png'; // 👈 這裡確保是你的 9.png
+            
+            bgImg.onload = function() {
+                // 清除畫布
+                ctx.clearRect(0, 0, 600, 400);
+                // 畫背景
                 ctx.drawImage(bgImg, 0, 0, 600, 400); 
-
-                // 2. 設定文字基準點為「正中間」
-                ctx.textAlign = 'center';      // 水平對齊：中間
-                ctx.textBaseline = 'middle';   // 垂直對齊：中間
                 
-                // 3. 設定文字顏色與陰影 (確保在圖上清晰)
-                ctx.fillStyle = '#000000';     // 文字改為黑色 (可依需求改色)
-                ctx.shadowColor = "rgba(255, 255, 255, 0.8)"; // 加上白色發光底，避免背景太花看不清
-                ctx.shadowBlur = 7;
+                // 設定文字屬性
+                ctx.textAlign = 'center';
+                ctx.textBaseline = 'middle';
+                ctx.fillStyle = '#2F4F4F'; // 黑色字體
+                
+                // 繪製文字 (位置皆為水平置中 300)
+                ctx.font = 'bold 34px "PML", serif';
+                ctx.fillText('有線耳機復活計畫', 300, 130);
+                
+                ctx.font = '26px "PML", serif';
+                ctx.fillText(`會員：${name}`, 300, 210);
+                
+                ctx.font = 'bold 22px monospace';
+                ctx.fillText(`ID: ${formattedNumber}`, 300, 270);
 
-                // 🌟 指令 A：寫下標題 (放在 Y=120 的位置)
-                ctx.font = 'bold 36px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText('有線耳機復活計畫', 300, 120);
-
-                // 🌟 指令 B：寫下暱稱 (放在正中間 Y=200)
-                ctx.font = 'bold 28px "PML", "PMingLiU", "新細明體", serif';
-                ctx.fillText(`MEMBER: ${name}`, 300, 200);
-
-                // 🌟 指令 C：寫下編號 (放在 Y=260)
-                ctx.font = 'bold 24px monospace';
-                ctx.fillText(`NO. ${formattedNumber}`, 300, 260);
-
-                // 4. 下載圖片邏輯 (保持不變)
-                saveCanvasAsImage(formattedNumber);
-            }
-
-                nameModal.style.display = 'none';
+                // 產生下載
                 const imageParams = canvas.toDataURL('image/png');
                 const downloadLink = document.createElement('a');
-                downloadLink.download = `wired-revival-card-${formattedNumber}.png`;
+                downloadLink.download = `wired-card-${formattedNumber}.png`;
                 downloadLink.href = imageParams;
-                document.body.appendChild(downloadLink);
                 downloadLink.click();
-                document.body.removeChild(downloadLink);
-            }
+                nameModal.style.display = 'none';
+            };
+        });
 
             const bgImg = new Image();
             bgImg.crossOrigin = "Anonymous"; 
