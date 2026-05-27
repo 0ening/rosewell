@@ -85,18 +85,30 @@
     document.getElementById('close-name-btn').onclick = () => nameModal.style.display = 'none';
     document.getElementById('download-trigger-btn').onclick = () => nameModal.style.display = 'flex';
 
-    // 2. 獲取編號 (加上錯誤捕捉)
+    // 2. 獲取編號 (加入跳動動畫)
     const numberElement = document.getElementById('member-id');
     const gasUrl = 'https://script.google.com/macros/s/AKfycbytIyUt9P-5lejKe6KfYZxd2VezUG-Hy15wXGmooAQk78Rxw3erRx3HJu07LhawKektfA/exec';
+
+    // 先讓數字瘋狂跳動
+    let isFetched = false;
+    const interval = setInterval(() => {
+        if(!isFetched) {
+            numberElement.innerText = Math.floor(Math.random() * 900000 + 100000);
+        }
+    }, 80);
 
     fetch(gasUrl)
         .then(res => res.json())
         .then(data => {
+            isFetched = true;
+            clearInterval(interval); // 抓到資料後停止動畫
             // 如果 GAS 回傳的是 {value: 123} 結構
             const num = data.value || data; 
             numberElement.innerText = String(num).padStart(6, '0');
         })
         .catch(err => {
+            isFetched = true;
+            clearInterval(interval); // 發生錯誤也停止動畫
             console.error("無法抓取編號:", err);
             numberElement.innerText = "999999"; // 連線失敗顯示預設值
         });
@@ -109,7 +121,8 @@
         const ctx = canvas.getContext('2d');
         const bgImg = new Image();
         
-        bgImg.src = '9.PNG' + new Date().getTime(); // 加上時間戳記，強制繞過瀏覽器快取
+        bgImg.crossOrigin = "Anonymous"; // 避免跨域問題
+        bgImg.src = '9.PNG?' + new Date().getTime(); // 補上 '?' 確保網址正確繞過快取
         bgImg.onload = function() {
             ctx.drawImage(bgImg, 0, 0, 600, 400);
             ctx.textAlign = 'center';
