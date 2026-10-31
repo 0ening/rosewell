@@ -7,73 +7,257 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@chinese-fonts/pml@1.0.1/dist/index.css">
     <style>
         * { box-sizing: border-box; margin: 0; padding: 0; }
+        
         body {
-            font-family: "PML", 'PMingLiU', '新細明體', serif;
-            background-image: url('r.jpg');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
+            font-family: 'Comic Sans MS', "PML", 'PMingLiU', '新細明體', serif;
+            /* Aero 漸層背景 */
+            background: linear-gradient(180deg, #d4f0ff 0%, #ffffff 50%, #b5f5c6 100%);
             background-attachment: fixed;
             min-height: 100vh;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            padding: 20px;
         }
-        body::before {
-            content: "";
-            position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            backdrop-filter: blur(2px) brightness(95%);
-            -webkit-backdrop-filter: blur(2px) brightness(95%);
-            background-color: rgba(244, 246, 248, 0.4);
-            z-index: 1;
-        }
+
+        /* 頂部導覽列：復古藍色粗邊框框 */
         .top-nav {
-            position: absolute; top: 20px; width: 100%; max-width: 800px; display: flex; padding: 0 20px; z-index: 10; font-weight: bold; font-size: 1.1rem;
+            width: 100%;
+            max-width: 800px;
+            display: flex;
+            justify-content: space-around;
+            border: 4px solid #1e90ff;
+            background: white;
+            padding: 10px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-        .nav-links { background-color: #ccffcc; border: 1px solid #99ff99; padding: 6px 15px; display: flex; align-items: center; }
-        .nav-links a { color: #0077ff; text-decoration: underline; margin-right: 15px; cursor: pointer; }
-        .nav-links a:hover { color: #00bfff; }
-        .counter-box {
-            position: relative; z-index: 2; background-color: #99ffcc; border: 1px solid #55cc99; border-radius: 4px; padding: 40px 30px; text-align: center; box-shadow: 4px 4px 0px rgba(0, 0, 0, 0.15); max-width: 400px; width: 80%; margin-top: 50px;
+        .top-nav a { 
+            color: #000; 
+            text-decoration: none; 
+            font-weight: bold;
+            font-size: 1.1rem;
+            cursor: pointer; 
         }
-        h2 { font-size: 1.3rem; color: #000000; margin-bottom: 0px; margin-top: 0; font-weight: bold;}
-        .number-area { display: inline-block; background: #000000; border: 1px dashed #ffffff; padding: 12px 24px; margin: 15px 0; box-shadow: inset 0 0 10px rgba(204, 102, 255, 0.5); }
-        .custom-number { font-size: 2.5rem; font-weight: bold; color: #00ffcc; letter-spacing: 4px; font-family: monospace, serif; text-shadow: 0px 0px 8px #00ffcc, 0px 0px 3px #ffffff; }
-        .rules-link { display: inline-block; margin-top: 15px; font-size: 0.9rem; color: #cc66ff; text-decoration: none; border-bottom: 1px dashed #cc66ff; transition: all 0.2s ease; font-weight: bold; background: transparent; border-top: none; border-left: none; border-right: none; cursor: pointer; padding: 2px 5px; }
-        .rules-link:hover { color: #9900cc; border-bottom: 1px dashed #9900cc; }
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); z-index: 100; justify-content: center; align-items: center; }
-        .modal-content { background-color: #ADFEDC; border: 2px solid #000000; box-shadow: 4px 4px 0px rgb(0, 204, 255); width: 85%; max-width: 350px; padding: 25px 20px; position: relative; text-align: left; }
-        .close-btn { position: absolute; top: 6px; right: 6px; background: #ffcccc; border: 1px solid #000000; font-family: monospace, serif; font-size: 0.9rem; font-weight: bold; color: #000; cursor: pointer; padding: 2px 6px; }
-        .rules-title { font-size: 1.05rem; font-weight: bold; color: #00BB00; margin-bottom: 15px; text-align: center; text-decoration: underline; }
-        .rules-list { margin: 0; padding-left: 20px; color: #00BB00; font-size: 0.85rem; line-height: 1.6; font-weight: bold; }
-        .name-input { width: 100%; padding: 10px; font-family: inherit; font-size: 1rem; border: 1px solid #000; margin-bottom: 20px; text-align: center; }
-        .submit-btn { width: 100%; background: #00BB00; color: #fff; border: 1px solid #000; padding: 10px; font-size: 1rem; font-weight: bold; cursor: pointer; }
+        .top-nav a:hover { color: #1e90ff; }
+
+        /* 復古視窗面板 */
+        .window-panel {
+            background: #f0f4f8;
+            border: 2px solid #8ba3c7;
+            box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
+            width: 100%;
+            max-width: 500px;
+            padding: 15px;
+            text-align: center;
+            position: relative;
+            margin-bottom: 20px;
+        }
+
+        /* 視窗標題列 */
+        .window-header {
+            border-bottom: 1px solid #8ba3c7;
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #4a3b7a;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        /* 內部白色資訊框 */
+        .info-box {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .info-box p {
+            color: #333;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        /* 數字顯示區 (復古終端機風格) */
+        .number-area { 
+            display: inline-block; 
+            background: #000080; /* 復古經典藍 */
+            border: 2px inset #fff; 
+            padding: 15px 30px; 
+            margin: 15px 0; 
+        }
+        .custom-number { 
+            font-size: 2.5rem; 
+            font-weight: bold; 
+            color: #00ff00; /* 螢光綠 */
+            letter-spacing: 4px; 
+            font-family: monospace, serif; 
+        }
+
+        /* 3D 果凍按鈕群 */
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .btn-glossy {
+            background: linear-gradient(180deg, #a8ff78, #78ffd6); 
+            border: 2px solid #2e8b57;
+            border-radius: 20px;
+            padding: 8px 20px;
+            font-family: 'Comic Sans MS', "PML", serif;
+            font-size: 16px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 1px 1px 2px black;
+            box-shadow: inset 0px 8px 10px rgba(255,255,255,0.6), 3px 3px 5px rgba(0,0,0,0.3);
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .btn-glossy:active {
+            box-shadow: inset 0px 2px 5px rgba(0,0,0,0.5);
+            transform: translateY(2px);
+        }
+        .btn-yellow { 
+            background: linear-gradient(180deg, #fffacd, #ffd700); 
+            border-color: #b8860b; 
+        }
+        
+        /* 彈出視窗 (Modal) */
+        .modal-overlay { 
+            display: none; 
+            position: fixed; 
+            top: 0; left: 0; width: 100%; height: 100%; 
+            background-color: rgba(0, 0, 0, 0.4); 
+            z-index: 100; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        
+        /* 復古對話框 */
+        .modal-content { 
+            background-color: #ece9d8; /* Windows XP 經典對話框色 */
+            border: 2px outset #fff; 
+            box-shadow: 2px 2px 10px rgba(0,0,0,0.5); 
+            width: 85%; 
+            max-width: 350px; 
+            padding: 20px; 
+            position: relative; 
+            text-align: left; 
+        }
+        
+        /* 視窗關閉按鈕 */
+        .close-btn { 
+            position: absolute; 
+            top: 5px; right: 5px; 
+            background: #ff6666; 
+            border: 2px outset #fff; 
+            font-family: Arial, sans-serif; 
+            font-size: 12px; 
+            font-weight: bold; 
+            color: white; 
+            cursor: pointer; 
+            padding: 2px 6px; 
+        }
+        .close-btn:active { border: 2px inset #fff; }
+
+        .rules-title { 
+            font-size: 1.1rem; 
+            font-weight: bold; 
+            color: #000080; 
+            margin-bottom: 15px; 
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 5px;
+        }
+        .rules-list { 
+            margin: 0; 
+            padding-left: 20px; 
+            color: #333; 
+            font-size: 0.95rem; 
+            line-height: 1.8; 
+            font-weight: bold; 
+        }
+        
+        /* 輸入框 */
+        .name-input { 
+            width: 100%; 
+            padding: 8px; 
+            font-family: inherit; 
+            font-size: 1rem; 
+            border: 2px inset #ccc; 
+            margin-bottom: 20px; 
+            text-align: center; 
+        }
     </style>
 </head>
 <body>
+
+    <!-- 頂部導覽列 -->
     <div class="top-nav">
-        <div class="nav-links">
-            <a href="https://www.youtube.com/watch?v=ZhIsAZO5gl0">播放</a>
-            <a href="#">暫停</a>
-            <a href="#">取消</a>
-            <a href="index.html">回到主頁</a>
+        <a href="https://www.youtube.com/watch?v=ZhIsAZO5gl0">播放</a>
+        <a href="#">暫停</a>
+        <a href="#">取消</a>
+        <a href="index.html">回到主頁</a>
+    </div>
+
+    <!-- 主視窗 -->
+    <div class="window-panel">
+        <div class="window-header">
+            <span>last news : project_revival.exe</span>
+            <span>_ □ X</span>
+        </div>
+        
+        <h2 style="font-size: 1.5rem; color: #4a3b7a; margin-bottom: 10px;">✮ 有線耳機復活計畫 ♫</h2>
+        
+        <div class="info-box">
+            <p>恭喜你成為有線耳機復活計畫的一員！</p>
+            <p style="color: #ff3333;">♪ 好時光都該被寶貝因為有線~ ♪</p>
+            
+            <p style="margin-top: 15px;">您是第</p>
+            <div class="number-area">
+                <span id="member-id" class="custom-number">000000</span>
+            </div>
+            <p>位加入的會員</p>
+        </div>
+
+        <div class="btn-group">
+            <button id="download-trigger-btn" class="btn-glossy">Download</button>
+            <button id="open-rules-btn" class="btn-glossy btn-yellow">Rules</button>
         </div>
     </div>
-    <div class="counter-box">
-        <h2>✮ 有線耳機復活計畫 ♫</h2>
-        <p style="color: #339966; margin-bottom: 0px;">恭喜你成為有線耳機復活計畫的一員！</p>
-        <p style="color: #339966; margin-bottom: 0px;">♪ 好時光都該被寶貝因為有線~ ♪</p>
-        <p style="color: #1e293b; margin-bottom: 5px; margin-top: 15px; font-size: 1.1rem; font-weight: bold;">您是第</p>
-        <div class="number-area"><span id="member-id" class="custom-number">000000</span></div>
-        <p style="color: #1e293b; margin-top: 5px; font-size: 1.1rem; font-weight: bold;">位加入的會員</p>
-        <div style="margin-top: 10px;">
-            <button id="download-trigger-btn" class="rules-link" style="margin-right: 15px;">下載</button>
-            <a href="#" id="open-rules-btn" class="rules-link">✞ 查看會員規則 ✞</a>
+
+    <!-- 規則彈出視窗 -->
+    <div id="rules-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-rules-btn" class="close-btn">X</button>
+            <div class="rules-title">★ 秘密會員規則 ★</div>
+            <ul class="rules-list">
+                <li>1. 需每天帶有線耳機出門。</li>
+                <li>2. 擁有【有線耳機復活計畫】小卡。</li>
+                <li>3. 尊重所有類型的音樂。</li>
+                <li>4. 音樂沒有優劣之分。</li>
+            </ul>
         </div>
     </div>
-    <div id="rules-modal" class="modal-overlay"><div class="modal-content"><button id="close-rules-btn" class="close-btn">X</button><div class="rules-title">★ 秘密會員規則 ★</div><ul class="rules-list"><li>1.需每天帶有線耳機出門。</li><li>2.擁有【有線耳機復活計畫】小卡。</li><li>3.尊重所有類型的音樂。</li><li>4.音樂沒有優劣之分。</li></ul></div></div>
-    <div id="name-modal" class="modal-overlay"><div class="modal-content"><button id="close-name-btn" class="close-btn">X</button><div class="rules-title">★ 建立專屬會員卡 ★</div><input type="text" id="user-name-input" class="name-input" placeholder="Name" maxlength="10"><button id="confirm-download-btn" class="submit-btn">確定下載</button></div></div>
+
+    <!-- 名字輸入彈出視窗 -->
+    <div id="name-modal" class="modal-overlay">
+        <div class="modal-content">
+            <button id="close-name-btn" class="close-btn">X</button>
+            <div class="rules-title">★ 建立專屬會員卡 ★</div>
+            <input type="text" id="user-name-input" class="name-input" placeholder="Enter Name..." maxlength="10">
+            <div style="text-align: center;">
+                <button id="confirm-download-btn" class="btn-glossy">確認 (OK)</button>
+            </div>
+        </div>
+    </div>
+
     <canvas id="download-canvas" width="600" height="400" style="display: none;"></canvas>
 
 <script>
@@ -101,19 +285,18 @@
         .then(res => res.json())
         .then(data => {
             isFetched = true;
-            clearInterval(interval); // 抓到資料後停止動畫
-            // 如果 GAS 回傳的是 {value: 123} 結構
+            clearInterval(interval); 
             const num = data.value || data; 
             numberElement.innerText = String(num).padStart(6, '0');
         })
         .catch(err => {
             isFetched = true;
-            clearInterval(interval); // 發生錯誤也停止動畫
+            clearInterval(interval); 
             console.error("無法抓取編號:", err);
-            numberElement.innerText = "999999"; // 連線失敗顯示預設值
+            numberElement.innerText = "999999"; 
         });
 
-    // 3. 修正下載邏輯 (強制載入圖片)
+    // 3. 下載邏輯 (維持原狀)
     document.getElementById('confirm-download-btn').addEventListener('click', () => {
         const name = document.getElementById('user-name-input').value.trim() || '隱形會員';
         const formattedNumber = numberElement.innerText;
@@ -121,8 +304,8 @@
         const ctx = canvas.getContext('2d');
         const bgImg = new Image();
         
-        bgImg.crossOrigin = "Anonymous"; // 避免跨域問題
-        bgImg.src = '9.PNG?' + new Date().getTime(); // 補上 '?' 確保網址正確繞過快取
+        bgImg.crossOrigin = "Anonymous"; 
+        bgImg.src = '9.PNG?' + new Date().getTime(); 
         bgImg.onload = function() {
             ctx.drawImage(bgImg, 0, 0, 600, 400);
             ctx.textAlign = 'center';
